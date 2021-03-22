@@ -1,0 +1,28 @@
+/* 
+
+2. Rajzolj ki egy négyzetet (téglalapot) karikákból (o betű). Annyi sora és oszlopa legyen, amennyit a felhasználó megadott. Pl.: sor = 2 oszlop = 4
+oooo
+oooo
+*/
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int row;
+    int col;
+
+    cin >> row >> col;
+
+    for(int i = 0; i < row; i++)
+    {
+        for(int j = 0; j < col; j++)
+        {
+            cout << "o";
+        }
+        cout << "\n";
+    }
+
+    return 0;
+}
