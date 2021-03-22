@@ -16,5 +16,12 @@ int main()
         cout << i*i << " ";
     }
 
+    cout << endl;
+
+    for(int i = 1; i*i < num; i++)
+    {
+        cout << i*i << " ";
+    }
+
     return 0;
 }
