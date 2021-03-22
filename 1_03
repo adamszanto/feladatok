@@ -1,0 +1,19 @@
+/* Pénzezés
+Készíts programot, mely bekéri a felhasználótól, hogy a kasszában hány 100, 200 és 500 Ft-os található. A program számolja ki, hogy mennyi a beírt pénz összege! */
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int szazas;
+    int ketszazas;
+    int otszazas;
+
+    cin >> szazas >> ketszazas >> otszazas;
+
+    cout << "A penz: " <<  100*szazas + 200*ketszazas + 500*otszazas << endl;
+
+    return 0;
+}
