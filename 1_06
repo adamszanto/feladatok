@@ -1,0 +1,33 @@
+/*
+Sorozat növekvő lépésekkel
+Egy program bekér a felhasználótól két pozitív egész számot, és a kisebbiktől a nagyobbikig növekvő lépésközzel kiírja a számokat. A lépésköz kezdetben 1, és minden lépésben eggyel nő. A program akkor is helyesen működik, ha a felhasználó előbb a felső, aztán az alsó határt adja meg (és fordítva is). 
+Pl. be: 4 23 ki: 4 5 7 10 14 19 
+Pl. be: 23 4 ki: 4 5 7 10 14 19
+*/
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int min;
+    int max;
+    int lepegeto = 0;
+
+    cin >> min >> max;
+
+    if(min > max)
+    {
+        int temp = min;
+        min = max;
+        max = temp;
+    }
+
+    for(int i = min; i <= max; i+=lepegeto)
+    {
+        cout << i << " ";
+        lepegeto++;
+    }
+
+    return 0;
+}
