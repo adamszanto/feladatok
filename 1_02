@@ -1,0 +1,4 @@
+2. Tegyük fel, hogy vannak kártyáink, amelyeknek egyik oldalán egy alakzat van, másikon pedig egy szám. Adott egy szabály:
+Ha egy kártyának négyzet van az egyik oldalán, páratlan szám kell legyen a másik oldalán.
+Ezek állítólag érvényesek az oldalt látható kártyákra. Melyeket kell megfordítani ahhoz, hogy ellenőrizzük a szabályt? 
+Kártyák: O 6 3 □
