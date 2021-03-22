@@ -1,0 +1,17 @@
+/* HF: 1. Írd ki egymás alá az 5-tel osztható számokat 5-től addig, amit a felhasználó megadott. Pl. ha 20-at adott meg: */
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int num;
+    cin >> num;
+
+    for(int i = 5; i <= num; i+=5)
+    {
+        cout << i << " ";
+    }
+
+    return 0;
+}
