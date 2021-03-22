@@ -1,0 +1,20 @@
+/* Négyzetszámok
+Írj programot, amely kiírja az első N darab négyzetszámot! N értékét kérd a felhasználótól!
+Írd ki a képernyőre az összes N-nél kisebb négyzetszámot! Vigyázz: ez nem ugyanaz a feladat, mint az előző! */
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int num;
+    cin >> num;
+
+    for(int i = 1; i <= num; i++)
+    {
+        cout << i*i << " ";
+    }
+
+    return 0;
+}
