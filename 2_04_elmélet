@@ -1,0 +1,9 @@
+/* hány jegyű a szám */
+
+int szam=126, db = 0;
+    while (szam > 0) 
+    {
+        szam /= 10;
+        ++db;
+    }
+    cout<<db<<endl;
