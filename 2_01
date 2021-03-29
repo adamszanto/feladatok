@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+// Készíts programot, amely egy v[5] tömb elemeit egyesével balra lépteti! A feladat megoldható segédtömb nélkül is!
+// Pl.: 1,2,3,4,5 – az eredeti tömb elemei
+
+
+
+
+int main()
+{
+    int tomb[] {1,2,3,4,5};
+    const int db = 5;
+    int num;
+
+    for(int i = 0; i < db; i++)
+    {
+        num = tomb[0];
+
+        for(int j = 0; j < db-1; j++)
+        {
+            tomb[j] = tomb[j+1];
+        }
+
+       tomb[db-1] = num;
+
+        for(int k = 0; k < db; k++)
+        {
+            cout << tomb[k] << " ";
+        }
+        cout << endl;
+    }
+
+
+
+
+
+    return 0;
+}
