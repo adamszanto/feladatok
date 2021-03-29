@@ -1,0 +1,55 @@
+#include <iostream>
+
+using namespace std;
+
+/* 
+Szigmon
+Készíts egy olyan programot, amely létrehoz és a programba beépített kezdeti értékekkel feltölt egy int
+típusú elemeket tartalmazó
+ tömböt! Írja ki, hogy a tömb elemei szigorúan monoton növekvőek, csökkenőek, vagy egyik sem!
+Teszteld a programot, hogy mind a három eredményt előállítsd vele! 
+Próbáld ki úgy is, hogy a csökkenő vagy növekvő monotonitást a tömb első kettő vagy utolsó kettő elemével rontod el, 
+hogy lásd, a számsor széleit is helyesen kezeled-e!
+
+*/
+
+int main()
+{
+    
+    int tomb[] {1,2,3,4,8,10,12};
+    int meret = sizeof(tomb)/sizeof(int);
+    
+    bool no = true;
+    bool csokken = true;
+    
+    for(int i = 0; i < meret -1; i++)
+    {
+        if(tomb[i] >= tomb[i+1])
+        {
+            no = false;
+        }
+        
+        if(tomb[i] <= tomb[i+1])
+        {
+            csokken = false;
+        }
+    }
+    
+    if(no)
+    {
+        cout << "Szigorúan monoton növekvő.\n";
+    }
+    
+    if(csokken)
+    {
+        cout << "Szigorúan monoton csökkenő.\n";
+    }
+    
+    if(!no && !csokken)
+    {
+        cout << "Nem monoton.\n";
+    }
+    
+    
+    return 0;
+}
