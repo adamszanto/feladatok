@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+/* HF: 1. Az utolsó öt szám… átlaga
+Írj programot, amely a felhasználótól számokat kér be. 
+A bevitel addig tartson, amíg a felhasználó 0-t nem ad meg. 
+Amikor ez megtörtént, a program írja ki az utoljára bevitt öt szám átlagát! 
+(Tegyük fel, hogy volt legalább ennyi.)
+ */
+
+
+int main()
+{
+    int tomb[5] {1,2,3,4,5};
+    int meret = sizeof(tomb)/sizeof(int);
+    int temp;
+    bool flag;
+    int num;
+    cin >> num;
+
+    // while(flag)
+    // {
+    //    flag = false;
+    //    cin >> num;
+
+    //    if(num != 0)
+    //    {
+    //        flag = true;
+    //    }
+
+        for(int i = 0; i < meret-1; i++)
+        {
+            tomb[i] = tomb[i+1];
+        }
+        tomb[meret-1] = num;
+        cout << endl;
+
+    // }
+    for(int i = 0; i <meret; i++)
+    {
+        cout << tomb[i] << " ";
+    }
+
+    return 0;
+}
