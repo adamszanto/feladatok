@@ -2,44 +2,49 @@
 using namespace std;
 
 /* HF: 1. Az utolsó öt szám… átlaga
-Írj programot, amely a felhasználótól számokat kér be. 
-A bevitel addig tartson, amíg a felhasználó 0-t nem ad meg. 
-Amikor ez megtörtént, a program írja ki az utoljára bevitt öt szám átlagát! 
+Írj programot, amely a felhasználótól számokat kér be.
+A bevitel addig tartson, amíg a felhasználó 0-t nem ad meg.
+Amikor ez megtörtént, a program írja ki az utoljára bevitt öt szám átlagát!
 (Tegyük fel, hogy volt legalább ennyi.)
  */
 
 
 int main()
 {
-    int tomb[5] {1,2,3,4,5};
+    int tomb[5] {0,0,0,0,0};
     int meret = sizeof(tomb)/sizeof(int);
     int temp;
     bool flag;
     int num;
+    int sum;
     cin >> num;
 
-    // while(flag)
-    // {
-    //    flag = false;
-    //    cin >> num;
-
-    //    if(num != 0)
-    //    {
-    //        flag = true;
-    //    }
-
+     while(num != 0)
+     {
         for(int i = 0; i < meret-1; i++)
         {
             tomb[i] = tomb[i+1];
         }
         tomb[meret-1] = num;
-        cout << endl;
+        cin >> num;
+     }
 
-    // }
+    cout << "A tomb tartalma: \n";
     for(int i = 0; i <meret; i++)
     {
         cout << tomb[i] << " ";
     }
+    cout << endl;
+
+    cout << "A tomb atlaga: ";
+    for(int i = 0; i < meret; i++)
+    {
+        if(tomb[i] > 0)
+        {
+            sum += tomb[i];
+        }
+    }
+    cout << (sum/meret) << ".\n";
 
     return 0;
 }
