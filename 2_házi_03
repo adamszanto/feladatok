@@ -1,0 +1,67 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int allomasSzam;
+    cin >> allomasSzam;
+    while(allomasSzam < 0 || allomasSzam > 1000)
+    {
+        cout << "Add meg az allomasok szamat 1 és 1000 kozott" <<endl;
+        cin >> allomasSzam;
+    }
+
+    int allomasokFel[allomasSzam];
+    int allomasokLe[allomasSzam];
+    int utasokSzamaAllomas[allomasSzam];
+    int felszallo;
+    int leszallo;
+    int szamlalo = 0;
+    int feleslegesMegallo = 0;
+    int maxUtasSzam = 0;
+    int uresenIndulo;
+
+
+    while(szamlalo < allomasSzam)
+    {
+        int fel;
+        int le;
+        cin >> le >> fel;
+
+        if((szamlalo > 0 && szamlalo != allomasSzam-1) && (fel == 0 && le == 0))
+        {
+            cout << "Hopp! Felesleges megallas\n";
+            feleslegesMegallo++;
+        }
+
+        allomasokFel[szamlalo] = fel;
+        allomasokLe[szamlalo] = le;
+
+        felszallo += fel;
+        leszallo += le;
+
+        if(fel > maxUtasSzam)
+        {
+            maxUtasSzam = fel;
+        }
+
+        if(fel == 0)
+        {
+            uresenIndulo++;
+        }
+
+        szamlalo++;
+    }
+    cout << "#" << endl;
+    cout << "A vonaton utazok szama: " << felszallo << endl;
+    cout << "#" << endl;
+    cout << "Felesleges megallok szama: " << feleslegesMegallo << endl;
+    cout << "#" << endl;
+    cout << "Maximalis utasszam: " << maxUtasSzam << endl;
+    cout << "#" << endl;
+    // cout << "Uresen indulo allomasok szama: " << uresenIndulo << endl;
+
+
+    return 0;
+}
