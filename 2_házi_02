@@ -1,0 +1,8 @@
+/*
+
+Kisebbek vagy nagyobbak?
+Adott egy m egészekből álló tömb, véletlen értékekkel feltöltve. 
+Készíts programot, mely a felhasználótól bekért p egész számról meghatározza, 
+hogy a tömbben p-nél nagyobb, vagy p-nél kisebb számokból van-e több!
+
+*/
