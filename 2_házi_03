@@ -19,6 +19,7 @@ int main()
     int leszallo;
     int szamlalo = 0;
     int feleslegesMegallo = 0;
+    int pillanatnyiUtasSzam = 0;
     int maxUtasSzam = 0;
     int uresenIndulo;
 
@@ -41,9 +42,14 @@ int main()
         felszallo += fel;
         leszallo += le;
 
-        if(fel > maxUtasSzam)
+        pillanatnyiUtasSzam += fel;
+        if(le > 0){
+            pillanatnyiUtasSzam -= le;
+        }
+
+        if(pillanatnyiUtasSzam > maxUtasSzam)
         {
-            maxUtasSzam = fel;
+            maxUtasSzam = pillanatnyiUtasSzam;
         }
 
         if(fel == 0)
