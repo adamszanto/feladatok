@@ -11,8 +11,8 @@ Amikor ez megtörtént, a program írja ki az utoljára bevitt öt szám átlag�
 
 int main()
 {
-    int tomb[5] {0,0,0,0,0};
-    int meret = sizeof(tomb)/sizeof(int);
+    int tomb[5] {0};
+    const int meret = 5;
     int temp;
     bool flag;
     int num;
