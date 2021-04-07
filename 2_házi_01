@@ -44,7 +44,7 @@ int main()
             sum += tomb[i];
         }
     }
-    cout << (sum/meret) << ".\n";
+    cout << (double)sum/meret << ".\n";
 
     return 0;
 }
