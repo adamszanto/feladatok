@@ -1,50 +1,32 @@
 #include <iostream>
 using namespace std;
 
-/* HF: 1. Az utolsó öt szám… átlaga
-Írj programot, amely a felhasználótól számokat kér be.
-A bevitel addig tartson, amíg a felhasználó 0-t nem ad meg.
-Amikor ez megtörtént, a program írja ki az utoljára bevitt öt szám átlagát!
+/*
+HF: 1. Az utolsó öt szám… átlaga
+Írj programot, amely a felhasználótól számokat kér be. A bevitel addig tartson, amíg a felhasználó 0-t nem ad meg.
+Amikor ez megtörtént, a program írja ki az utoljára bevitt öt szám átlagát! 
 (Tegyük fel, hogy volt legalább ennyi.)
- */
-
+*/
 
 int main()
 {
-    int tomb[5] {0};
-    const int meret = 5;
-    int temp;
-    bool flag;
-    int num;
-    int sum;
-    cin >> num;
+    const int DB = 5;
+    int beolv;
+    int szamok[DB] = {0};
+    int i = 0;
+    cin >> beolv;
+    double sum;
 
-     while(num != 0)
-     {
-        for(int i = 0; i < meret-1; i++)
-        {
-            tomb[i] = tomb[i+1];
-        }
-        tomb[meret-1] = num;
-        cin >> num;
-     }
-
-    cout << "A tomb tartalma: \n";
-    for(int i = 0; i <meret; i++)
+    while(beolv != 0)
     {
-        cout << tomb[i] << " ";
+        szamok[i] = beolv;
+        i = (i+1) % DB;
+        cin >> beolv;
     }
-    cout << endl;
 
-    cout << "A tomb atlaga: ";
-    for(int i = 0; i < meret; i++)
+    for(int i = 0; i < DB; i++)
     {
-        if(tomb[i] > 0)
-        {
-            sum += tomb[i];
-        }
+        sum += szamok[i];
     }
-    cout << (double)sum/meret << ".\n";
-
-    return 0;
+    cout << "Az utolso 5 megadott szam atlaga: " << (double) sum/DB;
 }
