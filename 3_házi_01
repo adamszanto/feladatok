@@ -1,0 +1,5 @@
+/* Egy szigetcsoport felett elrepülve bizonyos időközönként megnézzük, hogy épp hol vagyunk. Ha sziget (szárazföld) fölött, akkor leírunk egy egyest, ha tenger fölött, akkor pedig nullát.
+string terkep =”10010011100”;
+A következő két kérdésre keressük a választ: 
+1. Milyen hosszú a leghosszabb sziget?
+2. Hány sziget fölött repültünk át? */
