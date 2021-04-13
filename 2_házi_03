@@ -1,72 +1,101 @@
 #include <iostream>
-
 using namespace std;
 
 int main()
 {
-    int allomasSzam;
-    cin >> allomasSzam;
-    while(allomasSzam < 0 || allomasSzam > 1000)
+    int allomasokSzama;
+    int szamlalo = 0;
+    cin >> allomasokSzama;
+
+    // Bemenet KEZDETE
+
+    while(allomasokSzama < 0 || allomasokSzama > 1000)
     {
-        cout << "Add meg az allomasok szamat 1 és 1000 kozott" <<endl;
-        cin >> allomasSzam;
+        cout << "Add meg az allomasok szamat 1 es 1000 kozott" << endl;
+        cin >> allomasokSzama;
     }
 
-    int allomasokFel[allomasSzam];
-    int allomasokLe[allomasSzam];
-    int utasokSzamaAllomas[allomasSzam];
-    int felszallo;
-    int leszallo;
-    int szamlalo = 0;
-    int feleslegesMegallo = 0;
-    int pillanatnyiUtasSzam = 0;
-    int maxUtasSzam = 0;
-    int uresenIndulo;
+    int allomasFel[allomasokSzama] {0};
+    int allomasLe[allomasokSzama] {0};
 
-
-    while(szamlalo < allomasSzam)
+    while(szamlalo < allomasokSzama)
     {
-        int fel;
-        int le;
-        cin >> le >> fel;
+        cin >> allomasLe[szamlalo] >> allomasFel[szamlalo];
+        szamlalo++;
+    }
+    ///////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+    // Bemenet VÉGE
+    // Kimenet KEZDETE
 
-        if((szamlalo > 0 && szamlalo != allomasSzam-1) && (fel == 0 && le == 0))
+    // Az elején 0,0 és a végén 0,0 nem kell
+
+    int kezdetIndex = 0;
+    int vegeIndex = szamlalo-1;
+
+
+
+    // 1. részfeladat: Az első sorba a vonaton utazók számát kell kiírni!
+    int vonatonUtazok = 0;
+    cout << "#" << endl;
+    for(int i = 0; i < szamlalo; i++)
+    {
+        vonatonUtazok += allomasFel[i];
+    }
+    cout << vonatonUtazok << endl;
+    cout << "#" << endl;
+
+    // 2. részfeladat: Az első sorba azon állomások számát kell kiírni, amelyeken a vonat feleslegesen állt meg!
+    // ide majd a tisztított sorozat
+    int uresAllomas = 0;
+    for(int i = 0; i < allomasokSzama; i++)
+    {
+        if(allomasFel[i] == 0 && allomasLe[i] == 0)
+            {
+                uresAllomas++;
+            }
+    }
+    cout << uresAllomas << endl;
+    cout << "#" << endl;
+    // 3. részfeladat: Az első sorba a maximális utasszámot kell kiírni!
+    // 4. részfeladat: Az első sorba az üresen induló állomásokat. Második sorba az állomások sorszámát!
+    int pillanatnyiUtas[allomasokSzama] {0};
+    int pillanatnyi = 0;
+    int maxUtas = 0;
+    int uresenIndulo = 0;
+    int allomasSorszam[szamlalo] {0};
+
+    for(int i = 0; i < szamlalo; i++)
+    {
+        pillanatnyi += allomasFel[i];
+        pillanatnyi -= allomasLe[i];
+        if(pillanatnyi > maxUtas])
         {
-            cout << "Hopp! Felesleges megallas\n";
-            feleslegesMegallo++;
+            maxUtas = pillanatnyi;
         }
 
-        allomasokFel[szamlalo] = fel;
-        allomasokLe[szamlalo] = le;
-
-        felszallo += fel;
-        leszallo += le;
-
-        pillanatnyiUtasSzam += fel;
-        if(le > 0){
-            pillanatnyiUtasSzam -= le;
-        }
-
-        if(pillanatnyiUtasSzam > maxUtasSzam)
+        if(pillanatnyi == 0)
         {
-            maxUtasSzam = pillanatnyiUtasSzam;
-        }
-
-        if(fel == 0)
-        {
+            allomasSorszam[uresenIndulo] = i+1;
             uresenIndulo++;
         }
 
-        szamlalo++;
+      //  cout << pillanatnyiUtas[i] << " ";
+    }
+
+    cout << maxUtas << endl;
+    cout << "#" << endl;
+    cout << uresenIndulo << endl;
+    for(int i = 0; i < uresenIndulo; i++)
+    {
+        cout << allomasSorszam[i] << endl;
     }
     cout << "#" << endl;
-    cout << "A vonaton utazok szama: " << felszallo << endl;
-    cout << "#" << endl;
-    cout << "Felesleges megallok szama: " << feleslegesMegallo << endl;
-    cout << "#" << endl;
-    cout << "Maximalis utasszam: " << maxUtasSzam << endl;
-    cout << "#" << endl;
-    // cout << "Uresen indulo allomasok szama: " << uresenIndulo << endl;
+
+    // 5. részfeladat:
+    // folyt köv.
+
+
 
 
     return 0;
