@@ -13,39 +13,36 @@ A következő két kérdésre keressük a választ:
 int main()
 {
     string terkep = "10010011100";
-    int szigetSzam = 0;
-    int legnagyobbSziget = 0;
-    int i  = 0;
+
+    int sziget = 0;
+    int szigetHossz = 0;
+    int i = 0;
 
     while(i < terkep.length())
     {
         if(terkep[i] == '1')
         {
-            szigetSzam++;
-            int j = i;
+            sziget++;
             int hossz = 0;
+            int j = i;
 
             while(j < terkep.length() && terkep[j] == '1')
             {
                 j++;
                 hossz++;
             }
+            i = j;
 
-            j = i;
-
-            if(hossz > legnagyobbSziget)
+            if(hossz > szigetHossz)
             {
-                legnagyobbSziget = hossz;
+                szigetHossz = hossz;
             }
-
         } else {
             i++;
         }
     }
 
-    cout << "Szigetek szama: " << szigetSzam << ", leghosszabb sziget: " << legnagyobbSziget << endl;
-    cout << terkep.length();
-
+    cout << "Szigetek szama: " << sziget << ", a leghosszabb sziget: " << szigetHossz << endl;
 
     return 0;
 }
