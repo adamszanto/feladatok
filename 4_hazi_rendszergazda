@@ -1,0 +1,62 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    ifstream be ("rendszer.be");
+    if(!be)
+    {
+        cerr << "Nincs meg a fajl\n";
+        getchar();
+        return 1;
+    }
+
+    int N;
+    int K;
+    be >> N;
+    int napok[N+1] {0};
+    be >> K;
+
+    int szakaszKezdete;
+    int szakaszVege;
+
+    for(int i = 0; i < K; i++)
+    {
+            be >> szakaszKezdete >> szakaszVege;
+
+            for(int j = szakaszKezdete; j <= szakaszVege; j++)
+            {
+                napok[j] = 1; // ezeken a napokon 1 rendszergazda szabadságra megy.
+            }
+    }
+
+    be >> K;
+
+    for(int i = 0; i < K; i++)
+    {
+            be >> szakaszKezdete >> szakaszVege;
+
+            for(int j = szakaszKezdete; j <= szakaszVege; j++)
+            {
+                napok[j]++; // ha 0 volt,akkor most 1-es lesz mert 1 ember szabadságon lesz. ha 1-es volt eleve, akkor 2 lesz mert mind a kettő szabadságon van.
+            }
+    }
+
+    be.close();
+
+    for(int i = 1; i <= N; i++)
+    {
+        cout << i << ". nap: " << napok[i] << endl;
+    }
+
+
+    // 0-as szakasz meghatározása
+    // 2-es szakaszok meghatározása
+    // hol kezdődnek, hol végződnek
+
+
+
+
+    return 0;
+}
