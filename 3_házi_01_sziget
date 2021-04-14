@@ -1,57 +1,51 @@
-/* Egy szigetcsoport felett elrepülve bizonyos időközönként megnézzük, hogy épp hol vagyunk. Ha sziget (szárazföld) fölött, akkor leírunk egy egyest, ha tenger fölött, akkor pedig nullát.
-string terkep =”10010011100”;
-A következő két kérdésre keressük a választ: 
-1. Milyen hosszú a leghosszabb sziget?
-2. Hány sziget fölött repültünk át? */
-
 #include <iostream>
 using namespace std;
 
 /*
-
 Egy szigetcsoport felett elrepülve bizonyos időközönként megnézzük, hogy épp hol vagyunk.
 Ha sziget (szárazföld) fölött, akkor leírunk egy egyest, ha tenger fölött, akkor pedig nullát.
 string terkep =”10010011100”;
 A következő két kérdésre keressük a választ:
 1. Milyen hosszú a leghosszabb sziget?
 2. Hány sziget fölött repültünk át?
-
  */
 
 int main()
 {
     string terkep = "10010011100";
-
-    int szigetekSzama = 0;
-    int leghosszabbSziget = 0;
-
-    int i = 0;
+    int szigetSzam = 0;
+    int legnagyobbSziget = 0;
+    int i  = 0;
 
     while(i < terkep.length())
     {
         if(terkep[i] == '1')
         {
-            szigetekSzama++;
-            int hossz = 0;
+            szigetSzam++;
             int j = i;
+            int hossz = 0;
 
             while(j < terkep.length() && terkep[j] == '1')
             {
                 j++;
                 hossz++;
+            }
 
-            }
-            i = j;
-            if(hossz > leghosszabbSziget)
+            j = i;
+
+            if(hossz > legnagyobbSziget)
             {
-                leghosszabbSziget = hossz;
-            } else {
-                i++;
+                legnagyobbSziget = hossz;
             }
+
+        } else {
+            i++;
         }
     }
 
-    cout << "szigetek szama: " << szigetekSzama << " leghosszabb sziget: " << leghosszabbSziget;
+    cout << "Szigetek szama: " << szigetSzam << ", leghosszabb sziget: " << legnagyobbSziget << endl;
+    cout << terkep.length();
+
 
     return 0;
 }
