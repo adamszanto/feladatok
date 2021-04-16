@@ -12,17 +12,17 @@ A következő két kérdésre keressük a választ:
 
 int main()
 {
-    string terkep = "10010011100";
+    string terkep = "1001111001";
 
-    int sziget = 0;
-    int szigetHossz = 0;
+    int szigetek = 0;
+    int leghosszabb = 0;
     int i = 0;
 
     while(i < terkep.length())
     {
         if(terkep[i] == '1')
         {
-            sziget++;
+            szigetek++;
             int hossz = 0;
             int j = i;
 
@@ -32,17 +32,17 @@ int main()
                 hossz++;
             }
             i = j;
-
-            if(hossz > szigetHossz)
+            if(hossz > leghosszabb)
             {
-                szigetHossz = hossz;
+                leghosszabb = hossz;
             }
+
         } else {
             i++;
         }
     }
 
-    cout << "Szigetek szama: " << sziget << ", a leghosszabb sziget: " << szigetHossz << endl;
+    cout << "Szigetek szama: " << szigetek << ", leghosszabb sziget: " << leghosszabb << endl;
 
     return 0;
 }
