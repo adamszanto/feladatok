@@ -28,12 +28,6 @@ int main()
     // Bemenet VÉGE
     // Kimenet KEZDETE
 
-    // Az elején 0,0 és a végén 0,0 nem kell
-
-    int kezdetIndex = 0;
-    int vegeIndex = szamlalo-1;
-
-
 
     // 1. részfeladat: Az első sorba a vonaton utazók számát kell kiírni!
     int vonatonUtazok = 0;
@@ -47,8 +41,26 @@ int main()
 
     // 2. részfeladat: Az első sorba azon állomások számát kell kiírni, amelyeken a vonat feleslegesen állt meg!
     // ide majd a tisztított sorozat
+
+
+    int eleje;
+    int i = 0;
+    while(allomasFel[i] == 0 && allomasLe[i] == 0)
+    {
+        i++;
+    }
+        eleje = i;
+
+    i = szamlalo -1;
+    int vege;
+    while(allomasFel[i] == 0 && allomasLe[i] == 0)
+    {
+        i--;
+    }
+        vege = i;
+
     int uresAllomas = 0;
-    for(int i = 0; i < allomasokSzama; i++)
+    for(int i = eleje; i <= vege; i++)
     {
         if(allomasFel[i] == 0 && allomasLe[i] == 0)
             {
@@ -65,11 +77,11 @@ int main()
     int uresenIndulo = 0;
     int allomasSorszam[szamlalo] {0};
 
-    for(int i = 0; i < szamlalo; i++)
+    for(int i = eleje; i < vege; i++)
     {
         pillanatnyi += allomasFel[i];
         pillanatnyi -= allomasLe[i];
-        if(pillanatnyi > maxUtas])
+        if(pillanatnyi > maxUtas)
         {
             maxUtas = pillanatnyi;
         }
@@ -93,9 +105,44 @@ int main()
     cout << "#" << endl;
 
     // 5. részfeladat:
-    // folyt köv.
+    // A leghosszabb állomásszakasz, ahol több felszálló van, mint leszálló!
 
+    int maxKezdete;
+    int maxVege;
+    int i = eleje;
+    int maxHossz = 0;
+    int aktualisKezdet = 0;
+    int aktualisVeg = 0;
 
+    while(i <= vege)
+    {
+        
+        if(allomasFel[i] > allomasLe[i])
+        {
+            aktualisKezdet = i;
+            int hossz = 0;
+            while(i <= vege && allomasFel[i]> allomasLe[i])
+            {
+                i++;
+                hossz++;
+            }
+            
+            aktualisVeg = i-1;
+            
+            if(hossz > maxHossz)
+            {
+                maxHossz = hossz;
+                maxKezdete = aktualisKezdet;
+                maxVege = aktualisVeg;
+            }
+
+        } else {
+            i++;
+        }
+
+    }
+    cout << maxKezdete << " " << maxVege << endl;
+    cout << "#" << endl;
 
 
     return 0;
