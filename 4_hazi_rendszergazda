@@ -27,7 +27,7 @@ int main()
 
             for(int j = szakaszKezdete; j <= szakaszVege; j++)
             {
-                napok[j] = 1; // ezeken a napokon 1 rendszergazda szabadságra megy.
+                napok[j] = 1; // ezeken a napokon 1 rendszergazda szabadságra megy
             }
     }
 
@@ -45,16 +45,53 @@ int main()
 
     be.close();
 
+    /*
+
     for(int i = 1; i <= N; i++)
     {
         cout << i << ". nap: " << napok[i] << endl;
     }
-
+    */
 
     // 0-as szakasz meghatározása
     // 2-es szakaszok meghatározása
     // hol kezdődnek, hol végződnek
 
+    int biztonsagos = 0;
+    int veszelyes = 0;
+    int i = 0;
+
+    while(i <= N)
+    {
+        if(napok[i] == 0)
+        {
+            biztonsagos++;
+
+            while(i <= N && napok[i] == 0)
+            {
+                i++;
+            }
+
+        } else if (napok[i] == 2) {
+            veszelyes++;
+
+            while(i <= N && napok[i] == 2)
+            {
+                i++;
+            }
+
+        } else {
+            i++;
+        }
+    }
+
+    cout << "Biztonsagos idoszakok szama: " << biztonsagos << endl;
+
+    // Meghatározni az időszakok kezdete-vég napokat
+
+    // Bejárni a tömböt, ahol 0 ott kiíratjuk a pillanatnyi pozíciót, majd a végén a vég pozíciót
+    // while-al végiglépegetünk a 0-kon, amikor vége az utolsót is így kiíratni
+    // függvényekkel is meg lehet oldani utána. elegánsabban.
 
 
 
