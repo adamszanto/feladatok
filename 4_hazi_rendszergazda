@@ -1,65 +1,71 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 using namespace std;
 
-int main()
+
+void beolvas(ifstream &be, int &K, vector <int> &napok, int db)
+{
+   int szakaszKezdete;
+    int szakaszVege;
+
+    be >> K;
+
+    for(int i = 0; i < K; i++)
+    {
+            be >> szakaszKezdete >> szakaszVege;
+
+            for(int j = szakaszKezdete; j <= szakaszVege; j++)
+            {
+                napok[j]++; // ezeken a napokon 1 rendszergazda szabadságra megy
+            }
+    }
+}
+
+void fajlkezeles(int &N, int &K, vector <int> &napok)
 {
     ifstream be ("rendszer.be");
     if(!be)
     {
         cerr << "Nincs meg a fajl\n";
         getchar();
-        return 1;
+        exit (1);
     }
 
-    int N;
-    int K;
+
     be >> N;
-    int napok[N+1] {0};
-    be >> K;
-
-    int szakaszKezdete;
-    int szakaszVege;
-
-    for(int i = 0; i < K; i++)
-    {
-            be >> szakaszKezdete >> szakaszVege;
-
-            for(int j = szakaszKezdete; j <= szakaszVege; j++)
-            {
-                napok[j] = 1; // ezeken a napokon 1 rendszergazda szabadságra megy
-            }
-    }
-
-    be >> K;
-
-    for(int i = 0; i < K; i++)
-    {
-            be >> szakaszKezdete >> szakaszVege;
-
-            for(int j = szakaszKezdete; j <= szakaszVege; j++)
-            {
-                napok[j]++; // ha 0 volt,akkor most 1-es lesz mert 1 ember szabadságon lesz. ha 1-es volt eleve, akkor 2 lesz mert mind a kettő szabadságon van.
-            }
-    }
+    napok.resize(N+1);
+    beolvas(be, K, napok, N+1);
+    beolvas(be, K, napok, N+1);
 
     be.close();
+}
 
-    /*
 
-    for(int i = 1; i <= N; i++)
+void szakaszKiir(vector <int> napok, int db, int vizsgalt)
+{
+    int szamlalo = 1;
+    while(szamlalo <= db-1)
     {
-        cout << i << ". nap: " << napok[i] << endl;
+        if(napok[szamlalo] == vizsgalt)
+        {
+            cout << szamlalo << " ";
+
+            while(napok[szamlalo] == vizsgalt)
+            {
+                szamlalo++;
+            }
+            cout << szamlalo-1 << endl;
+        } else {
+            szamlalo++;
+        }
     }
-    */
+}
 
-    // 0-as szakasz meghatározása
-    // 2-es szakaszok meghatározása
-    // hol kezdődnek, hol végződnek
+void besorolas(int N, int &biztonsagos, int &veszelyes, vector <int> napok) // érték szerinti paraméter átadás. a másolattal dolgozunk. csak olvassuk az N-et
+{
 
-    int biztonsagos = 0;
-    int veszelyes = 0;
-    int i = 0;
+    int i = 1;
 
     while(i <= N)
     {
@@ -84,16 +90,26 @@ int main()
             i++;
         }
     }
+}
+
+int main()
+{
+
+
+   int N;
+    int K;
+    vector <int> napok;
+    fajlkezeles(N, K, napok);
+
+    int biztonsagos = 0;
+    int veszelyes = 0;
+   besorolas(N, biztonsagos, veszelyes, napok);
 
     cout << "Biztonsagos idoszakok szama: " << biztonsagos << endl;
+    szakaszKiir(napok, N+1, 0);
 
-    // Meghatározni az időszakok kezdete-vég napokat
-
-    // Bejárni a tömböt, ahol 0 ott kiíratjuk a pillanatnyi pozíciót, majd a végén a vég pozíciót
-    // while-al végiglépegetünk a 0-kon, amikor vége az utolsót is így kiíratni
-    // függvényekkel is meg lehet oldani utána. elegánsabban.
-
-
+    cout << "Veszelyes idoszakok szama: " << veszelyes << endl;
+    szakaszKiir(napok, N+1, 2);
 
     return 0;
 }
