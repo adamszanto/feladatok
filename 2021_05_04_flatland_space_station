@@ -1,5 +1,3 @@
-// https://www.hackerrank.com/challenges/flatland-space-stations/problem
-
 #include <iostream>
 using namespace std;
 
@@ -7,12 +5,11 @@ int main()
 {
     int n;
     int m;
-    int cities[n] {0};
     int i = 0;
     int max = 0;
 
     cin >> n >> m;
-    int c[m];
+    int cities[n] {0};
 
     int temp;
     for(int i = 0; i <m ; i++)
@@ -21,28 +18,36 @@ int main()
         cities[temp] = 1;
     }
 
-    int k = 0;
 
-    for(int i = 0; i < n; i++)
+    int hossz=0;
+    bool elso = true;
+
+   for (int i = 0; i < n; ++i)
     {
-        if(cities[i] == 1)
+        if(cities[i] == 0)
         {
-            int j = i;
-            while(cities[j+1] == 0 && j < n)
+            hossz++;
+        }
+        else
+        {
+         if (elso)
             {
-                k++;
-                j++;
+              max = hossz;
+              elso = false;
             }
+            else
+            {
+             if ((hossz+1)/2 >max)
+             {
+              max = (hossz+1)/2;
+             }
+            }
+            hossz = 0;
         }
-
-        if(k > max)
-        {
-            max = k;
-        }
-
     }
+    if (hossz > max) max = hossz;
 
-    cout << (max+1)/2;
+   cout<<max;
 
 
     return 0;
