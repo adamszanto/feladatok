@@ -4,8 +4,6 @@ Pl. 89→LXXXIX. Elég csak 99-ig; ha 100-at, vagy annál nagyobbat írt be a fe
 using namespace std;
 
 string romaiValto()
-
-
 {
     cout << "Kerek egy szamot: " << endl;
     int num;
@@ -15,18 +13,16 @@ string romaiValto()
         cin >> num;
     }
 
-    int romaiErtek[4] = {50,10,5,1};
-    char romaiJel[4] = {'L', 'X', 'V', 'I'};
+    int romaiErtek[11] = {50,10,9,8,7,6,5,4,3,2,1};
+   // char romaiJel[4] = {'L','X','V','I'};
+   string romaiJel[11] = {"L","X","IX","VIII","VII","VI","V","IV","III","II","I"};
 
-    string romai;
-
-    cout << "Az arab szam: " << num << endl;
-
+    string romai = "";
 
     int i = 0;
-    while(num > 0)
+    while(num > 0 && i < 11)
     {
-       if(num - romaiErtek[i] > 0)
+       if(num - romaiErtek[i] >= 0)
        {
             num -= romaiErtek[i];
             romai += romaiJel[i];
@@ -35,16 +31,15 @@ string romaiValto()
        }
     }
 
+    return romai;
 
-
-    cout << "A romai szam: " << romai << endl;
 };
 
 
 int main()
 {
 
-    romaiValto();
+    cout << romaiValto() << endl;
 
     return 0;
 }
