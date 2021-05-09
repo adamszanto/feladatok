@@ -1,0 +1,50 @@
+/* Írjunk egy programot, amely kér a felhasználótól egy tízes számrendszerben megadott egész számot, utána pedig kiírja annak megfelelőjét római számokkal.
+Pl. 89→LXXXIX. Elég csak 99-ig; ha 100-at, vagy annál nagyobbat írt be a felhasználó, akkor szóljunk neki, hogy csak 99-ig működik a program. */
+#include <iostream>
+using namespace std;
+
+string romaiValto()
+
+
+{
+    cout << "Kerek egy szamot: " << endl;
+    int num;
+    cin >> num;
+    while(num < 0 || num > 100){
+        cout << "Hiba. Add meg a szamot ezuttal 1-99 kozott." <<endl;
+        cin >> num;
+    }
+
+    int romaiErtek[4] = {50,10,5,1};
+    char romaiJel[4] = {'L', 'X', 'V', 'I'};
+
+    string romai;
+
+    cout << "Az arab szam: " << num << endl;
+
+
+    int i = 0;
+    while(num > 0)
+    {
+       if(num - romaiErtek[i] > 0)
+       {
+            num -= romaiErtek[i];
+            romai += romaiJel[i];
+       } else {
+        i++;
+       }
+    }
+
+
+
+    cout << "A romai szam: " << romai << endl;
+};
+
+
+int main()
+{
+
+    romaiValto();
+
+    return 0;
+}
