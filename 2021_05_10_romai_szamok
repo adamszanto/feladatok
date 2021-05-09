@@ -8,19 +8,19 @@ string romaiValto()
     cout << "Kerek egy szamot: " << endl;
     int num;
     cin >> num;
-    while(num < 0 || num > 100){
+    while(num < 1 || num > 99){
         cout << "Hiba. Add meg a szamot ezuttal 1-99 kozott." <<endl;
         cin >> num;
     }
 
-    int romaiErtek[11] = {50,10,9,8,7,6,5,4,3,2,1};
+    int romaiErtek[12] = {90,50,10,9,8,7,6,5,4,3,2,1};
    // char romaiJel[4] = {'L','X','V','I'};
-   string romaiJel[11] = {"L","X","IX","VIII","VII","VI","V","IV","III","II","I"};
+   string romaiJel[12] = {"XC","L","X","IX","VIII","VII","VI","V","IV","III","II","I"};
 
     string romai = "";
 
     int i = 0;
-    while(num > 0 && i < 11)
+    while(num > 0 && i < 12)
     {
        if(num - romaiErtek[i] >= 0)
        {
