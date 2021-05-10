@@ -13,8 +13,7 @@ string romaiValto()
         cin >> num;
     }
 
-    int romaiErtek[12] = {90,50,10,9,8,7,6,5,4,3,2,1};
-   // char romaiJel[4] = {'L','X','V','I'};
+   int romaiErtek[12] = {90,50,10,9,8,7,6,5,4,3,2,1};
    string romaiJel[12] = {"XC","L","X","IX","VIII","VII","VI","V","IV","III","II","I"};
 
     string romai = "";
@@ -30,16 +29,12 @@ string romaiValto()
         i++;
        }
     }
-
     return romai;
-
 };
 
 
 int main()
 {
-
     cout << romaiValto() << endl;
-
     return 0;
 }
