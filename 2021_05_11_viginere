@@ -1,0 +1,28 @@
+/* Jelenítsük meg a képernyőn a Vigenére táblát. */
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    string abc = "abcdefghijklmnopqrstuvwxyz";
+
+    for(int i = 0; i < 26; i++) {
+
+
+        char felre = abc[0];
+
+        for(int i = 0; i < abc.length()-1; i++)
+        {
+            abc[i] = abc[i+1];
+        }
+
+        abc[abc.length()-1] = felre;
+
+        cout << abc << endl;
+        }
+
+
+    return 0;
+}
