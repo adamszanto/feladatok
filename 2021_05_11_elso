@@ -1,0 +1,25 @@
+/*Írjunk programot amely egy N soros és M oszlopos sormintát jelenít meg a képernyőn az alábbiak szerint!
+Például N=5 és M=8 esetén:
+
+XOXO
+OXOX
+XOXO 
+*/
+
+int n;
+    int m;
+    cin >> n >> m;
+
+    for(int i = 0; i < n ; i++)
+    {
+        for(int j = 0; j < m; j++)
+        {
+            if((i+j)%2 == 0)
+            {
+                cout << "X" << " ";
+            } else {
+                cout << "O" << " ";
+            }
+        }
+        cout << endl;
+    }
