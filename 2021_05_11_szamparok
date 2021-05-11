@@ -1,0 +1,43 @@
+/*Párosával speciális szám a 48 és a 63, mivel a 48*63 ls a 84*36 művelet eredménye is 3024, azaz a két szám szorzata nem változik ha a számjegyeit felcseréljük.
+Keressük meg az ilyen speciális kétjegyű számpárokat és írjuk ki őket a képernyőre!
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+
+    int kezdo = 12;
+    int utolso = 98;
+    int fele = 55;
+
+    int kezdoId;
+    int utolsoId;
+
+    for(int i = kezdo; i <= utolso; i++)
+    {
+
+        for(int j = i+1; j <= utolso; j++)
+        {
+        kezdoId = (i % 10)*10;
+        kezdoId += i/10;
+
+        utolsoId = (j % 10)*10;
+        utolsoId += j/10;
+
+
+        if(i * j == kezdoId* utolsoId && (i % 10)*10 != i/10 && (j % 10)*10 != j/10)
+            {
+                cout << i << " " << j << endl;
+            }
+        }
+
+
+    }
+
+
+
+    return 0;
+}
