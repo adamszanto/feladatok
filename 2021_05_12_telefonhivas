@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-
 /*
 Egy telefonhívás egy napon belüli kezdeti és végidőpontját (óra, perc, másodperc) kezeli!
 A két időpont alapján határozzuk meg hogy hány perces volt a beszélets, ha mindne megkezdett perc egy egész percnek számít!
@@ -29,7 +28,7 @@ Egyébként 20 Ft percenként. A díjazásnál az számít hogy mikor kezdődöt
 
      cout << "=========================" << endl;
      cout << "Hivas kezdete: ";
-     if(kOra < 9)
+     if(kOra <= 9)
      {
          cout << "0" << kOra << ":";
      } else {
@@ -70,7 +69,7 @@ Egyébként 20 Ft percenként. A díjazásnál az számít hogy mikor kezdődöt
 
 
      cout << "Hivas ideje:   " << differencia << " perc." << endl;
-     cout << "Hivas dija:    " << hivasDij << " Ft" << endl;
+     cout << "Hivas dija:    " << hivasDij << " Ft." << endl;
      cout << "=========================" <<endl;
  }
 
