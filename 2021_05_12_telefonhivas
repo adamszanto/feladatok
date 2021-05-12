@@ -1,0 +1,84 @@
+#include <iostream>
+using namespace std;
+
+/*
+Egy telefonhívás egy napon belüli kezdeti és végidőpontját (óra, perc, másodperc) kezeli!
+A két időpont alapján határozzuk meg hogy hány perces volt a beszélets, ha mindne megkezdett perc egy egész percnek számít!
+Mennyit kell fizetni? 30 Ft csúcsidőben a tarifa (08.00-16.59-ig tart a csúcsidő).
+Egyébként 20 Ft percenként. A díjazásnál az számít hogy mikor kezdődött a beszégetés.
+ */
+
+ int hivas(int kOra, int kPerc, int kMasodperc, int vOra, int vPerc, int vMasodperc)
+ {
+     int kezdetMasodperc = kOra*60*60 + kPerc*60 + kMasodperc;
+     int vegeMasodperc = vOra*60*60 + vPerc*60 + vMasodperc;
+     int differenciaMasodperc = vegeMasodperc - kezdetMasodperc;
+     int differencia = differenciaMasodperc / 60;
+
+     int kezdetCsucsido = 8*60*60;
+     int vegeCsucsido = 16*60*60 + 59*60 + 59;
+     int hivasDij;
+
+     if(kezdetMasodperc > kezdetCsucsido && kezdetMasodperc < vegeCsucsido)
+     {
+         hivasDij = differencia * 30;
+     } else {
+        hivasDij = differencia * 20;
+     }
+
+
+     cout << "=========================" << endl;
+     cout << "Hivas kezdete: ";
+     if(kOra < 9)
+     {
+         cout << "0" << kOra << ":";
+     } else {
+         cout << kOra << ":";
+     }
+     if(kPerc < 9)
+     {
+         cout << "0" << kPerc << ":";
+     } else {
+        cout << kPerc << ":";
+     }
+     if(kMasodperc < 9)
+     {
+         cout << "0" << kMasodperc << endl;
+     } else {
+        cout << kMasodperc << endl;
+     }
+
+     cout << "Hivas vege:    ";
+     if(kOra < 9)
+     {
+         cout << "0" << vOra << ":";
+     } else {
+         cout << vOra << ":";
+     }
+     if(vPerc < 9)
+     {
+         cout << "0" << vPerc << ":";
+     } else {
+        cout << vPerc << ":";
+     }
+     if(vMasodperc < 9)
+     {
+         cout << "0" << vMasodperc << endl;
+     } else {
+        cout << vMasodperc << endl;
+     }
+
+
+     cout << "Hivas ideje:   " << differencia << " perc." << endl;
+     cout << "Hivas dija:    " << hivasDij << " Ft" << endl;
+     cout << "=========================" <<endl;
+ }
+
+int main()
+{
+    hivas(7, 6, 0, 9, 5, 0);
+    hivas(9, 0, 0, 11, 0 ,0);
+    hivas(9, 1, 0, 11, 0, 0);
+    hivas(15,43,15, 17,12,22);
+    return 0;
+}
