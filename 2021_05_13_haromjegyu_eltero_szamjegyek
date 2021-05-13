@@ -1,0 +1,24 @@
+#include <iostream>
+/*
+Írjunk egy programot, ami kiírja az összes olyan 3 jegyű számot, amelynek számjegyei eltérnek egymástól!
+*/
+using namespace std;
+
+int main()
+{
+    for(int i = 1; i < 9; i++)
+    {
+        for(int j = 1; j < 9; j++)
+        {
+            for(int k = 1; k < 9; k++)
+            {
+                if(i != j && i != k && j != k)
+                {
+                    cout << i << "" << j << "" << k << endl;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
