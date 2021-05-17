@@ -5,27 +5,30 @@ using namespace std;
 // 1.6. szorzótábla
 void szorzotabla(int num)
 {
-    cout << "=================" << endl;
-    cout << "Szorzotabla feladat: " << endl;
-    cout << "    ";
+    cout << "     ";
     for(int p = 1; p <= num; p++)
     {
-        cout << setw(3) << p;
+        cout << setw(4) << p;
     }
     cout << endl;
-    cout << "---+----------------" << endl;
+    cout << "----+";
+    for(int i = 0; i < num; i++)
+    {
+        cout << "----";
+    }
+    cout << endl;
     for(int i = 1; i <= num; i++)
     {
-        cout << setw(3) << i;
+        cout << setw(4) << i;
 
         for(int j = 1; j <= num; j++)
         {
             if(num/j == num)
             {
-                cout << "|" << setw(3) << j;
+                cout << "|" << setw(4) << j;
             }
             else
-            cout << setw(3) << j*i;
+            cout << setw(4) << j*i;
         }
         cout << endl;
     }
@@ -33,6 +36,6 @@ void szorzotabla(int num)
 
 int main()
 {
-    szorzotabla(10);
+    szorzotabla(11);
     return 0;
 }
