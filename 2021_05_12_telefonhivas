@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 /*
 Egy telefonhívás egy napon belüli kezdeti és végidőpontját (óra, perc, másodperc) kezeli!
@@ -7,26 +8,9 @@ Mennyit kell fizetni? 30 Ft csúcsidőben a tarifa (08.00-16.59-ig tart a csúcs
 Egyébként 20 Ft percenként. A díjazásnál az számít hogy mikor kezdődött a beszégetés.
  */
 
- int hivas(int kOra, int kPerc, int kMasodperc, int vOra, int vPerc, int vMasodperc)
+void formazas(int kOra, int kPerc, int kMasodperc, int vOra, int vPerc, int vMasodperc)
  {
-     int kezdetMasodperc = kOra*60*60 + kPerc*60 + kMasodperc;
-     int vegeMasodperc = vOra*60*60 + vPerc*60 + vMasodperc;
-     int differenciaMasodperc = vegeMasodperc - kezdetMasodperc;
-     int differencia = differenciaMasodperc / 60;
-
-     int kezdetCsucsido = 8*60*60;
-     int vegeCsucsido = 16*60*60 + 59*60 + 59;
-     int hivasDij;
-
-     if(kezdetMasodperc > kezdetCsucsido && kezdetMasodperc < vegeCsucsido)
-     {
-         hivasDij = differencia * 30;
-     } else {
-        hivasDij = differencia * 20;
-     }
-
-
-     cout << "=========================" << endl;
+     cout << "========================" << endl;
      cout << "Hivas kezdete: ";
      if(kOra <= 9)
      {
@@ -66,11 +50,48 @@ Egyébként 20 Ft percenként. A díjazásnál az számít hogy mikor kezdődöt
      } else {
         cout << vMasodperc << endl;
      }
+ }
+
+ void formazas2(int kOra, int kPerc, int kMasodperc, int vOra, int vPerc, int vMasodperc)
+ {
+     cout << "========================" << endl;
+     cout << "Hivas kezdete: ";
+     cout << setw(2) << setfill('0') << kOra << ":" << setw(2) << setfill('0') << kPerc << ":" << setw(2) << setfill('0') << kMasodperc << endl;
+ }
+
+ void hivas(int kOra, int kPerc, int kMasodperc, int vOra, int vPerc, int vMasodperc)
+ {
+     int kezdetMasodperc = kOra*60*60 + kPerc*60 + kMasodperc;
+     int vegeMasodperc = vOra*60*60 + vPerc*60 + vMasodperc;
+     int differenciaMasodperc = vegeMasodperc - kezdetMasodperc;
+     // int differencia = differenciaMasodperc / 60;
 
 
+     int differencia;
+     if(differenciaMasodperc % 60 != 0)
+     {
+         differencia = differenciaMasodperc / 60;
+         differencia++;
+     } else {
+        differencia = differenciaMasodperc / 60;
+     }
+
+
+     int kezdetCsucsido = 8*60*60;
+     int vegeCsucsido = 16*60*60 + 59*60 + 59;
+     int hivasDij;
+
+     if(kezdetMasodperc > kezdetCsucsido && kezdetMasodperc < vegeCsucsido)
+     {
+         hivasDij = differencia * 30;
+     } else {
+        hivasDij = differencia * 20;
+     }
+
+     formazas2(kOra,kPerc, kMasodperc, vOra, vPerc, vMasodperc);
      cout << "Hivas ideje:   " << differencia << " perc." << endl;
      cout << "Hivas dija:    " << hivasDij << " Ft." << endl;
-     cout << "=========================" <<endl;
+     cout << "========================" <<endl;
  }
 
 int main()
@@ -79,5 +100,6 @@ int main()
     hivas(9, 0, 0, 11, 0 ,0);
     hivas(9, 1, 0, 11, 0, 0);
     hivas(15,43,15, 17,12,22);
+    hivas(15,00,00, 15, 01, 01);
     return 0;
 }
