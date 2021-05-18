@@ -1,0 +1,52 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+/*
+Adottegy maximum négyjegyű pozitív egész szám.
+Jelenítsük meg a helyiérték-táblázatát a képernyőn úgy, hogy a szövegeket (ezres, százas, tízes, egyes) balra,
+a számjegyeket pedig jobbra igazítjuk.
+ */
+
+int width = 7;
+
+void helyiertek(int num)
+{
+    if(num > 9999)
+    {
+        cout << "Maximum negyjegyu pozitiv egesz szamot adj meg. Probald ujra." << endl;
+        return;
+    }
+
+    int ezres = num / 1000;
+    int szazas = num % 1000 / 100;
+    int tizes = (num % 100) / 10;
+    int egyes = num % 10;
+
+    cout << "Ezres" << setw(width) << "|" << "Szazas" << setw(width) << "|" << "Tizes" << setw(width) << "|" << "Egyes" << setw(width) << "|" << endl;
+    for(int i = 0; i < width*7; i++)
+    {
+        cout << "-";
+    }
+    cout << endl;
+    cout << setfill(' ') << setw(width+4) << ezres << "| " << setfill(' ') << setw(width+4) << szazas << "| " << setfill(' ') << setw(width+3) << tizes << "|" << setfill(' ') << setw(width+4) << egyes << "|" << endl;
+    for(int i = 0; i < width*7; i++)
+        {
+            cout << "=";
+        }
+    cout << endl;
+    cout << endl;
+    cout << endl;
+
+}
+
+int main()
+{
+    helyiertek(10);
+    helyiertek(22);
+    helyiertek(345);
+    helyiertek(1232);
+    helyiertek(10005);
+
+    return 0;
+}
