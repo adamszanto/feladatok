@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+bool prim(int num)
+{
+    if(num == 1)
+    {
+        return false;
+    }
+
+    if(num == 2)
+    {
+        return true;
+    }
+
+    for(int i = 2; i <= num/2; i++)
+    {
+        if(num % i == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void primVizsgalat(int a, int b)
+{
+    int min = b;
+    int max = 0;
+
+    for(int i = a; i <= b; i++)
+    {
+        if(prim(i))
+        {
+            cout << i << endl;
+            if (i > max)
+            {
+                max = i;
+            }
+
+            if(i < min)
+            {
+                min = i;
+            }
+        }
+    }
+    cout << "min: " << min << ", max: " << max << endl;
+}
+
+int main()
+{
+    primVizsgalat(7, 512);
+    return 0;
+}
