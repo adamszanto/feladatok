@@ -8,14 +8,14 @@ Jelenítsük meg a helyiérték-táblázatát a képernyőn úgy, hogy a szöveg
 a számjegyeket pedig jobbra igazítjuk.
  */
 
-int width = 7;
-
 void helyiertek(int num)
 {
-    if(num > 9999)
+
+    const int width = 10;
+    while(num > 9999)
     {
-        cout << "Maximum negyjegyu pozitiv egesz szamot adj meg. Probald ujra." << endl;
-        return;
+        cout << "A megadott szam: " << num << " tul nagy. Maximum negyjegyu pozitiv egesz szamot adj meg. Add meg ujra: " << endl;
+        cin >> num;
     }
 
     int ezres = num / 1000;
@@ -23,14 +23,14 @@ void helyiertek(int num)
     int tizes = (num % 100) / 10;
     int egyes = num % 10;
 
-    cout << "Ezres" << setw(width) << "|" << "Szazas" << setw(width) << "|" << "Tizes" << setw(width) << "|" << "Egyes" << setw(width) << "|" << endl;
-    for(int i = 0; i < width*7; i++)
+    cout << "Ezres    |" << "Szazas   |" << "Tizes    |" << "Egyes    |" << endl;
+    for(int i = 0; i < width*4; i++)
     {
         cout << "-";
     }
     cout << endl;
-    cout << setfill(' ') << setw(width+4) << ezres << "| " << setfill(' ') << setw(width+4) << szazas << "| " << setfill(' ') << setw(width+3) << tizes << "|" << setfill(' ') << setw(width+4) << egyes << "|" << endl;
-    for(int i = 0; i < width*7; i++)
+    cout <<  setw(width-1) << ezres << "|" << setw(width-1) << szazas << "|" << setw(width-1) << tizes << "|" << setw(width-1) << egyes << "|" << endl;
+    for(int i = 0; i < width*4; i++)
         {
             cout << "=";
         }
