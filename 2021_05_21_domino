@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+/* ============================
+   Feladat leírás
+   
+Minden dominólap két nemnegatív egész számból, illetve a két számnak megfelelő
+számú pöttyből áll. Egy N nagyságú (1 és 6 közötti egész szám) dominókészletben minden szám 0 és N közötti,
+és nem tartalmaz azonos dominókat. Két dominólap megegyezik, ha rajtuk a számok az olvasási sorrendtől függetlenül azonosak.
+Állítsunk elő egy N-es dominókészlet dominóit, és határozzuk meg a dominókészlet összes pöttyeinek számát!
+Például a 2-es dominókészlet a következő dominókat tartalmazza:
+[0 0] [0 1] [0 2] [1 1] [1 2] [2 2], a pöttyök száma: 12.
+*/
+
+int kombinaciok(int num)
+{
+    int ossz = num+1;
+    for(int i = num; i > 0; i--)
+    {
+        ossz += i;
+    }
+    return ossz;
+}
+
+
+void domino(int num)
+{
+    int meret = kombinaciok(num);
+    int tomb[meret][2] = {0};
+    int temp[2] = {0};
+
+
+    // kiiratni a dominok értékeit:
+    for(int i = 0; i < meret; i++)
+    {
+        cout << "[";
+        for(int j = 0; j < 2; j++)
+        {
+            cout << tomb[i][j];
+            if(j == 0)
+            {
+                cout << " ";
+            }
+        }
+        cout << "] ";
+    }
+
+}
+
+int main()
+{
+    domino(2);
+    return 0;
+}
