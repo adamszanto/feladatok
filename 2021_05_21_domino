@@ -12,43 +12,26 @@ Például a 2-es dominókészlet a következő dominókat tartalmazza:
 [0 0] [0 1] [0 2] [1 1] [1 2] [2 2], a pöttyök száma: 12.
 */
 
-int kombinaciok(int num)
-{
-    int ossz = num+1;
-    for(int i = num; i > 0; i--)
-    {
-        ossz += i;
-    }
-    return ossz;
-}
-
-
 void domino(int num)
 {
-    int meret = kombinaciok(num);
-    int tomb[meret][2] = {0};
-    int temp[2] = {0};
-
-
-    // kiiratni a dominok értékeit:
-    for(int i = 0; i < meret; i++)
+    int pottyok = 0;
+    for(int i = 0; i <= num; i++)
     {
-        cout << "[";
-        for(int j = 0; j < 2; j++)
+        for(int k = i; k <=num; k++)
         {
-            cout << tomb[i][j];
-            if(j == 0)
-            {
-                cout << " ";
-            }
+            cout << "[";
+            cout << i << " - " << k;
+            cout << "] ";
+            pottyok += i;
+            pottyok += k;
         }
-        cout << "] ";
     }
-
+    cout << endl;
+    cout << "Pottyok szama: " << pottyok;
 }
 
 int main()
 {
-    domino(2);
+    domino(3);
     return 0;
 }
