@@ -1,0 +1,134 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <iomanip>
+ 
+using namespace std;
+ 
+class Feladat
+{
+    private:
+        vector <int> adatok;
+        int tavolsag;
+ 
+    public:
+        void feladat1();
+        void feladat2();
+        void feladat3();
+        void feladat4();
+        void feladat5();
+};
+ 
+void Feladat::feladat1()
+{
+    ifstream be("melyseg.txt");
+    if(!be)
+    {
+        cerr << "nincs meg a fajl.";
+        cin.get();
+        exit(1);
+    }
+ 
+    int valtozo;
+    while(be >> valtozo)
+    {
+        adatok.push_back(valtozo);
+    }
+ 
+    be.close();
+ 
+    cout << "1. feladat " << endl;
+    cout << endl;
+    cout << "A fajl adatainak szama: " << adatok.size() << endl;
+}
+ 
+void Feladat::feladat2()
+{
+    cout << "2. feladat" << endl;
+    cout << endl;
+    cout << "Adjon meg egy tavolsagerteket! " << endl;
+    cin >> tavolsag;
+ 
+    cout << "Ezen a helyen a felszin " << adatok[tavolsag-1] << " meter melyen van.";
+}
+ 
+void Feladat::feladat3()
+{
+    double nulla = 0;
+ 
+    for(int i = 0; i < adatok.size(); i++)
+    {
+        if(adatok[i] == 0)
+        {
+            nulla++;
+        }
+    }
+ 
+    cout << "3. feladat" << endl;
+    cout << endl;
+    cout << "Az erintetlen terulet aranya " << setprecision(4) <<(nulla/adatok.size())*100 << "%" << endl;
+}
+ 
+void Feladat::feladat4()
+{
+    ofstream ki("godrok.txt");
+    if(!ki)
+    {
+        cerr << "nem sikerult letrehozni a fajlt.";
+        cin.get();
+        exit(1);
+    }
+ 
+    cout << "4. feladat" << endl;
+    cout << endl;
+    int i = 0;
+    while(i < adatok.size())
+    {
+       if(adatok[i] != 0)
+       {
+           while(i < adatok.size() && adatok[i] != 0)
+           {
+               ki << adatok[i] << " ";
+               i++;
+           }
+           ki << endl;
+       } else {
+        i++;
+       }
+    }
+    ki.close();
+}
+ 
+void Feladat::feladat5()
+{
+    int godorszam = 0;
+    int i = 0;
+    while(i < adatok.size())
+    {
+        if(adatok[i] != 0)
+        {
+            godorszam++;
+            while(i < adatok.size() && adatok[i] != 0)
+            {
+                i++;
+            }
+        } else {
+            i++;
+        }
+    }
+    cout << endl << "5. feladat" << endl;
+    cout << "A godrok szama: " << godorszam << endl;
+}
+ 
+int main()
+{
+    Feladat f;
+    f.feladat1();
+    f.feladat2();
+    f.feladat3();
+    f.feladat4();
+    f.feladat5();
+ 
+    return 0;
+}
+ 
