@@ -2,23 +2,24 @@
 #include <vector>
 #include <fstream>
 #include <iomanip>
- 
+
 using namespace std;
- 
+
 class Feladat
 {
     private:
         vector <int> adatok;
         int tavolsag;
- 
+
     public:
         void feladat1();
         void feladat2();
         void feladat3();
         void feladat4();
         void feladat5();
+        void feladat6();
 };
- 
+
 void Feladat::feladat1()
 {
     ifstream be("melyseg.txt");
@@ -28,34 +29,34 @@ void Feladat::feladat1()
         cin.get();
         exit(1);
     }
- 
+
     int valtozo;
     while(be >> valtozo)
     {
         adatok.push_back(valtozo);
     }
- 
+
     be.close();
- 
+
     cout << "1. feladat " << endl;
-    cout << endl;
     cout << "A fajl adatainak szama: " << adatok.size() << endl;
+    cout << endl;
 }
- 
+
 void Feladat::feladat2()
 {
     cout << "2. feladat" << endl;
-    cout << endl;
     cout << "Adjon meg egy tavolsagerteket! " << endl;
     cin >> tavolsag;
- 
-    cout << "Ezen a helyen a felszin " << adatok[tavolsag-1] << " meter melyen van.";
+
+    cout << "Ezen a helyen a felszin " << adatok[tavolsag-1] << " meter melyen van." << endl;
+    cout << endl;
 }
- 
+
 void Feladat::feladat3()
 {
     double nulla = 0;
- 
+
     for(int i = 0; i < adatok.size(); i++)
     {
         if(adatok[i] == 0)
@@ -63,12 +64,11 @@ void Feladat::feladat3()
             nulla++;
         }
     }
- 
+
     cout << "3. feladat" << endl;
-    cout << endl;
     cout << "Az erintetlen terulet aranya " << setprecision(4) <<(nulla/adatok.size())*100 << "%" << endl;
 }
- 
+
 void Feladat::feladat4()
 {
     ofstream ki("godrok.txt");
@@ -78,9 +78,7 @@ void Feladat::feladat4()
         cin.get();
         exit(1);
     }
- 
-    cout << "4. feladat" << endl;
-    cout << endl;
+
     int i = 0;
     while(i < adatok.size())
     {
@@ -98,7 +96,7 @@ void Feladat::feladat4()
     }
     ki.close();
 }
- 
+
 void Feladat::feladat5()
 {
     int godorszam = 0;
@@ -118,8 +116,77 @@ void Feladat::feladat5()
     }
     cout << endl << "5. feladat" << endl;
     cout << "A godrok szama: " << godorszam << endl;
+    cout << endl;
 }
- 
+
+void Feladat::feladat6()
+{
+    if(adatok[tavolsag-1] == 0)
+    {
+        cout << "Ezen a helyen nincs godor." << endl;
+        return;
+    } else {
+
+    int kezdete = adatok[tavolsag];
+    int vege = adatok[tavolsag];
+
+    for(int i = tavolsag; i > 0; i--)
+    {
+        if(adatok[i-1] == 0)
+        {
+            kezdete = i+1;
+            break;
+        }
+    }
+
+    for(int i = tavolsag-1; i < adatok.size(); i++)
+    {
+        if(adatok[i] == 0)
+        {
+            vege = i;
+            break;
+        }
+    }
+
+    int legmelyebb = 0;
+
+    for(int i = kezdete; i < vege; i++)
+    {
+        if(adatok[i] > legmelyebb)
+        {
+            legmelyebb = adatok[i];
+        }
+    }
+
+    int sum = 0;
+
+    for(int i = kezdete-1; i <= vege; i++)
+    {
+        sum += adatok[i];
+    }
+
+    int terfogat = sum * 10;
+
+    int vizmennyiseg = (vege - kezdete+1)*10;
+
+    cout << "6. feladat" << endl;
+    cout << "a)" << endl;
+    cout << "A godor kezdete: " << kezdete << " meter, a godor vege: " << vege << " meter." << endl;
+    cout << "b)" << endl;
+    cout << "Nem melyul folyamatosan / Folyamatosan melyul" << endl;
+    cout << "c)" << endl;
+    cout << "A legnagyobb melysege " << legmelyebb << " meter." << endl;
+    cout << "d)" << endl;
+    cout << "A terfogata " << sum * 10 << " m^3." << endl;
+    cout << "e)" << endl;
+    cout << "A vizmennyiseg " << terfogat - vizmennyiseg << " m^3." << endl;
+
+
+
+    }
+
+}
+
 int main()
 {
     Feladat f;
@@ -128,7 +195,7 @@ int main()
     f.feladat3();
     f.feladat4();
     f.feladat5();
- 
+    f.feladat6();
+
     return 0;
 }
- 
