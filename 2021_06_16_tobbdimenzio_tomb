@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    /*
+    string abc[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+
+
+    string beolvas;
+    cin >>  beolvas;
+
+    for(int i = 0; i < beolvas.length(); i++)
+    {
+        for(int j = 2; j < 10; j++)
+        {
+            if(abc[j].find(beolvas[i]) != string::npos)
+            {
+               cout << j;
+               break;
+            }
+        }
+    } */
+
+    /*
+    string abc = "abcdefghijklmnopqrstuvwxyz";
+    int tomb[] = {2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,7,8,8,8,9,9,9,9};
+
+    string beolvas;
+    cin >> beolvas;
+
+    for(int i = 0; i < beolvas.length(); i++)
+    {
+        cout << tomb[abc.find(beolvas[i])];
+    }
+
+    */
+
+
+    // 2.10 madárnyelv
+
+    string maganhangzo = "aeiouAEIOU";
+
+    string mondat;
+    getline(std::cin, mondat);
+
+    for(int i = 0; i < mondat.length(); i++)
+    {
+        if(maganhangzo.find(mondat[i]) == string::npos)
+        {
+            cout << mondat[i];
+        } else {
+            cout << mondat[i] << "v" << mondat[i];
+        }
+
+    }
+
+    return 0;
+}
