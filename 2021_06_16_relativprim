@@ -1,0 +1,34 @@
+#include <iostream>
+
+using namespace std;
+
+int LNKO(int a, int b)
+{
+    if(a == 0)
+    {
+        return b;
+    } else {
+        return LNKO(b % a, a);
+    }
+}
+
+void relativPrim(int a, int b)
+{
+    for(int i = a; i <= b; i++)
+    {
+        for(int j = a; j <= b; j++)
+        {
+            if((LNKO(i, j)) == 1)
+            {
+                cout << i << " " << j <<endl;
+                i = j;
+            }
+        }
+    }
+}
+
+int main()
+{
+    relativPrim(3, 6);
+    return 0;
+}
