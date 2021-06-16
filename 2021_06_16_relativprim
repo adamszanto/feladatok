@@ -1,7 +1,7 @@
 #include <iostream>
 
-/* F1.24. Két szám akkor relatív prím, ha egyen kívül nincs más közös osztójuk. 
-Határozzuk meg az [A;B] intervallumba eső relatív prímpárokat, és írjuk ki őket a képernyőre! */
+// F1.24. Két szám akkor relatív prím, ha egyen kívül nincs más közös osztójuk. 
+// Határozzuk meg az [A;B] intervallumba eső relatív prímpárokat, és írjuk ki őket a képernyőre!
 
 using namespace std;
 
