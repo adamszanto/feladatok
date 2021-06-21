@@ -1,0 +1,55 @@
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+bool vizsgalat(string egy_m, string ket_m)
+{
+   map <char, int> egy_abc;
+   map <char, int> ket_abc;
+
+   cout << "Eddig OK";
+   
+   for(int i = 0; i < egy_m(); i++)
+   {
+       egy_abc[egy_m[i]]++;
+   }
+   
+   for(int i = 0; i < ket_m(); i++)
+   {
+       ket_abc[ket_m[i]]++;
+   }
+    
+   if(egy_abc.size() != ket_abc.size())
+   {
+       return false;
+   } 
+   
+   for (auto  element : egy_abc) 
+    {
+        if(ket_abc.find(element.first) == ket_abc.end() || element.second != ket_abc[element.first])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
+int main()
+{
+    string egy_mondat = "abc";
+    string ket_mondat = "abc";
+    
+
+    if(egy_mondat.length() == ket_mondat.length())
+    {
+        vizsgalat(egy_mondat, ket_mondat);
+    } else {
+        cout << "Nem hasonloak";
+    }
+
+
+    return 0;
+}
