@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include <numeric>
+#include <iomanip>
+
+using namespace std;
+
+/*
+int start = 0;
+    int end = mondat.find(' '); //ahol az elso szokozt megtalalja
+    while (end != string::npos) //amig a mondat vegere nem erunk
+    {
+        cout <<(char)toupper(mondat[start])<< mondat.substr(start+1, end - start) << " "<<end-start<<endl;
+        szohosszak.push_back(end-start);
+
+        start = end + 1;
+        end = mondat.find(' ', start); //a start poziciotol kezdve az elso ' ' helye
+    }
+    szohosszak.push_back(mondat.length()-start);
+    cout <<(char)toupper(mondat[start])<< mondat.substr(start+1, end)<<" "<<mondat.length()-start<<endl;
+
+    double average = accumulate(szohosszak.begin(), szohosszak.end(), 0.0) / szohosszak.size();
+    cout<<"Az atlag: " <<setprecision(3)<<average<<endl;
+
+ */
+
+int main()
+{
+    string mondat = "Apa anya moszkvics";
+    // getline(cin, mondat);
+    int start = 0;
+    vector <int> szohosszak;
+    int end = mondat.find(' '); //ahol az elso szokozt megtalalja
+
+    while (end != string::npos) //amig a mondat vegere nem erunk
+    {
+        cout <<(char)toupper(mondat[start])<< mondat.substr(start+1, end - start) << " "<<end-start<<endl;
+        szohosszak.push_back(end-start);
+
+        start = end + 1;
+        end = mondat.find(' ', start); //a start poziciotol kezdve az elso ' ' helye
+    }
+    szohosszak.push_back(mondat.length()-start);
+    cout <<(char)toupper(mondat[start])<< mondat.substr(start+1, end)<<" "<<mondat.length()-start<<endl;
+
+    double average = accumulate(szohosszak.begin(), szohosszak.end(), 0.0) / szohosszak.size();
+    cout<<"Az atlag: " <<setprecision(4)<<average<<endl;
+    return 0;
+}
