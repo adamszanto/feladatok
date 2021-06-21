@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+#include <locale>
+#include <algorithm>
+using namespace std;
+
+    bool szokoz_e(char b)
+    {
+        return (b ==' ');
+    }
+
+int main()
+{
+
+    string szo = "Indul a gorog aludni";
+    szo.erase(remove_if(szo.begin(), szo.end(), szokoz_e), szo.end());
+
+    int hossz = szo.length();
+
+    for(int i = 0; i < hossz; i++)
+    {
+       szo[i] = tolower(szo[i]);
+    }
+
+    bool igaz = true;
+
+
+    for(int i = 0; i <= hossz/2; i++)
+    {
+
+        if(szo[i] != szo[hossz-1-i])
+        {
+            igaz = false;
+        }
+    }
+
+    if(igaz)
+    {
+        cout << "Palindrom";
+    } else {
+        cout << "Nem palindrom";
+    }
+
+    return 0;
+}
