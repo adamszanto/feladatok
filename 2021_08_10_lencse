@@ -1,0 +1,50 @@
+#include <iostream>
+#include <map>
+
+/*
+
+Hamupipőke különböző színű lencséket válogat. Az egyező színűeket azonos tálkába kell tennie.
+Előre sajnos nem tudja, hogy hány darab tálat kell előkészítenie. Készíts programot, amely segít
+neki: megadja a lencsefajták számát, valamint leszámolja, hogy melyikből mennyi volt!
+
+Példa:
+
+sárga
+sárga
+zöld
+sárga
+fehér
+sárga
+zöld
+sárga
+
+sárga 5 db
+zöld 2 db
+fehér 1 db
+
+ */
+
+using namespace std;
+
+int main()
+{
+    map<string, int> mennyiseg;
+    string fajta;
+
+    do{
+        cin >> fajta;
+        if(fajta != "0")
+        {
+            mennyiseg[fajta]++;
+        } // ha nem volt még ez akkor újként felveszi, a ++ az 1 lesz ,egyébként hozzáadja
+    } while(fajta != "0");
+
+    for(auto x: mennyiseg)
+    {
+        cout << x.first <<  " " << x.second << " db" << endl;
+    }
+
+    cout << "Talkak szama: " << mennyiseg.size() << endl;
+
+    return 0;
+}
