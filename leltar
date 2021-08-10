@@ -1,0 +1,29 @@
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+int main()
+{
+    map<string, int> leltar;
+    string bejon;
+    int beszam;
+
+    do
+    {
+        cout << "Kerem a nevet: ";
+        cin >> bejon;
+        cout << "Kerem a mennyiseget: ";
+        cin >> beszam;
+
+        leltar[bejon] += beszam; // ha nem volt még ilyen, akkor újat hoz létre, és hozzáadja a beszámot. ha már volt olyan akkor pedig += hozzáadja a régihez
+
+    } while(beszam != 0);
+
+    for(auto x: leltar)
+    {
+        cout << x.first << " " << x.second << endl;
+    }
+
+    return 0;
+}
