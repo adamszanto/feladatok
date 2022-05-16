@@ -1,0 +1,93 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+#include <vector>
+#include <fstream>
+#include <set>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+#define ellenoriz(felt, pont) if (felt) pont++; else cerr << "Nem teljesul a feltetel a " << __LINE__<< ". sorban." <<endl;
+
+
+/* Szabályok:
+
+    - csak az a beugró érvényes, amely nem tartalmaz semmilyen változtatást a main()-ben,
+        és már nincs benne kommentezve semmi az "//idaig" sor után
+    - az "ellenoriz"-en kívül nem tartalmaz #define sorokat, és azt sem szabad megváltoztatni
+    - új #include megengedett a C/C++ standard könyvtárbeli elemek közül
+*/
+
+// Osztály deklaráció
+class A
+{
+    // char a = adattag
+public: char a;
+      
+      // struktúra deklaráció
+      struct x { char a; };
+
+      // x típusú változó, adattag az osztályban
+      x aa;
+
+      // Konstruktor
+      A()
+      {
+          // Konstruktor = értéket ad az osztály adattagjainak: 
+          a = 'a';
+
+          aa.a = 'a';
+      }
+};
+
+class Be
+{
+public:
+    string s;
+
+    Be(string s)
+    {
+        string *pString = &s;
+    }
+
+};
+
+int main()
+{
+    int pont = 0;
+    srand(time(0));
+    // A osztály neve, a objektum neve
+
+    A a; 
+    ellenoriz(a.a == 'a', pont);
+    ellenoriz(a.aa.a == 'a', pont);
+
+    // Házi feladat :
+
+    string s;
+    s += 'a' + rand() % 26;
+    s += 'a' + rand() % 26;
+    Be be(s);
+    ellenoriz(be.s == s, pont);
+    ellenoriz(be.s == s, pont);
+
+    /*
+    map<A, Be> ce;
+    ce[a] = be;
+    ellenoriz(ce.size() == 1, pont);
+    ellenoriz(ce.size() == 1, pont);
+
+    string varazslat = csiriba();
+    ellenoriz(varazslat == s, pont);
+    ellenoriz(varazslat == s, pont);
+
+    x = rand() % 100;
+    ellenoriz(y == x, pont);
+    ellenoriz(y == x, pont);
+    */
+    cout << endl << pont << "/10 pont";
+    return 0;
+}
