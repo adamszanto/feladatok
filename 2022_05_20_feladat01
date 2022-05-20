@@ -1,0 +1,198 @@
+#include <iostream>
+
+using namespace std;
+
+class Halmaz
+{
+private:
+	int db; //hány eleme van
+	int* h; // az elemek tömbje
+
+
+public: Halmaz();
+	  // Másoló konstruktor
+	  Halmaz(const Halmaz&);
+	  Halmaz& operator=(const Halmaz&); //értékadó operátor átdefiniálása
+	  Halmaz& operator=(Halmaz&&); //move stílusú értékadó operátor átdefiniálása
+	  Halmaz(Halmaz&&);
+	  void kiir();
+	  bool kivesz(int mit);
+	  void berak(int mit);
+	  bool keres(int mit);
+	  Halmaz teszt();
+	  ~Halmaz();
+};
+Halmaz::Halmaz(Halmaz&& regi) : db(regi.db), h(regi.h)
+{
+	cout << "Move constructor" << endl;
+	regi.db = 0;
+	regi.h = nullptr;
+}
+
+Halmaz Halmaz::teszt()
+{
+	Halmaz uj;
+	uj.berak(150);
+	return uj;
+}
+
+Halmaz::Halmaz()
+{
+	db = 0;
+	h = nullptr;
+}
+
+Halmaz::Halmaz(const Halmaz& ebbol)
+{
+	cout << "copy constructor" << endl;
+	db = ebbol.db;
+	h = new int[db];
+	for (int i = 0; i < db; i++)
+	{
+		h[i] = ebbol.h[i];
+	}
+}
+
+Halmaz& Halmaz::operator=(Halmaz&& ebbol)
+{
+	cout << "move operator=" << endl;
+	if (this != &ebbol)
+	{
+		db = ebbol.db;
+		h = ebbol.h;
+		ebbol.db = 0;
+		ebbol.h = nullptr;
+	}
+	return *this;
+}
+
+Halmaz& Halmaz::operator=(const Halmaz& ebbol)
+{
+	cout << "operator=" << endl;
+	if (this != &ebbol)
+	{
+		delete[] h; //felszabadítjuk az eredeti területet
+		db = ebbol.db;
+		h = new int[db]; //újrafoglaljuk a kellő számú elemnek
+		for (int i = 0; i < db; i++)
+		{
+			h[i] = ebbol.h[i];
+		}
+
+	}
+	return *this;
+}
+
+void Halmaz::kiir()
+{
+	cout << endl << "A halmaz eleme(i):" << endl;
+	for (int i = 0; i < db; i++)
+	{
+		cout << h[i] << " ";
+	}
+	cout << endl;
+}
+
+bool Halmaz::kivesz(int mit)
+{
+	if (keres(mit))
+	{
+		int* uj = new int[db - 1];
+		int j = 0;
+		for (int i = 0; i < db; i++) if (h[i] != mit) uj[j++] = h[i];
+		delete[] h;
+		h = uj;
+		db--;
+		return true;
+	}
+	return false;
+}
+
+void Halmaz::berak(int mit)
+{
+	if (!keres(mit))
+	{
+		int* uj = new int[db + 1];
+		for (int i = 0; i < db; i++) uj[i] = h[i];
+		uj[db] = mit;
+		delete[] h;
+		h = uj;
+		db++;
+	}
+}
+
+bool Halmaz::keres(int mit)
+{
+	bool van_e = false;
+	for (int i = 0; i < db; i++)
+	{
+		if (mit == h[i])
+		{
+			van_e = true;
+			break;
+		}
+	}
+	if (van_e) return true;
+	return false;
+}
+
+Halmaz::~Halmaz()
+{
+	delete[] h;
+	h = nullptr;
+	db = 0;
+}
+
+int main()
+{
+
+	Halmaz egeszek;
+	cout << "egeszek.berak(10);";
+
+	egeszek.berak(10);
+	egeszek.kiir();
+
+	cout << endl << "0-tol 9-ig berak";
+	for (int i = 0; i < 10; i++) egeszek.berak(i);
+	egeszek.kiir();
+
+	cout << endl << "Melyik szamot keressem a halmazban?" << endl;
+	int keresett;
+	cin >> keresett;
+
+	if (egeszek.keres(keresett)) cout << "A(z) " << keresett << " benne van a halmazban." << endl;
+	else cout << "A(z) " << keresett << " nincs benne a halmazban." << endl;
+
+	if (egeszek.kivesz(0)) cout << endl << "Kivettuk a nullat." << endl;
+
+	egeszek.kiir();
+
+	cout << endl << "2. halmaz: ";
+	Halmaz egeszek2 = egeszek;
+	egeszek2.kiir();
+	cout << endl << "egeszek2.berak(100);";
+	egeszek2.berak(100);
+	egeszek2.kiir();
+	cout << endl << "Az elso halmaz nem valtozott: ";
+	egeszek.kiir();
+
+	Halmaz uj = move(egeszek2);
+	//vagy Halmaz uj = egeszek2;  - itt automatikusan a move konstruktor hívódik meg.
+	cout << "Az egeszek2 megszunt es lett belole uj: " << endl;
+	uj.kiir();
+
+	egeszek2.kiir(); //ez már üres
+
+	cout << endl << "uj = egeszek;" << endl;
+	uj = egeszek;
+	uj.kiir();
+
+	cout << endl << "uj = move(egeszek);" << endl;
+	egeszek.kivesz(10);
+	uj = move(egeszek);
+	uj.kiir();
+
+	system("pause");
+
+	return 0;
+}
