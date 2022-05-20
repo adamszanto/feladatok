@@ -1,0 +1,66 @@
+#include <iostream>
+
+using namespace std;
+
+class String
+{
+private: char* p;
+	   unsigned int size;
+
+public:
+
+
+	String()
+	{
+		p = nullptr;
+		size = 0;
+
+	};
+
+	String(const char* s)
+	{
+		size = strlen(s);
+		p = new char[strlen(s) + 1];
+		strcpy_s(p, strlen(s)+1, s);
+	};
+
+	~String()
+	{
+		delete[] p;
+		p = nullptr;
+		size = 0;
+	}
+
+	String(const String& copy)
+	{
+		p = new char[copy.size + 1];
+		size = copy.size;
+
+		for (int i = 0; i < size; i++)
+		{
+			p[i] = copy.p[i];
+		}
+		p[size] = 0;
+	}
+
+	void kiir()
+	{
+		cout << p << endl;
+	}
+
+};
+
+int main()
+{
+	String str("Hello world");
+	str.kiir();
+	cout << "======"<<endl ;
+	String str2 = str;
+	str2.kiir();
+
+	return 0;
+}
+
+
+// HF Move konstruktor 
+// Értékadó operátorok írni mindkét változatban - hagyományos és moveos változatban
