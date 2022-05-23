@@ -9,7 +9,6 @@ private: char* p;
 
 public:
 
-
 	String()
 	{
 		p = nullptr;
@@ -21,7 +20,7 @@ public:
 	{
 		size = strlen(s);
 		p = new char[strlen(s) + 1];
-		strcpy_s(p, strlen(s)+1, s);
+		strcpy_s(p, strlen(s) + 1, s);
 	};
 
 	~String()
@@ -31,8 +30,10 @@ public:
 		size = 0;
 	}
 
+	// Másoló konstruktor
 	String(const String& copy)
 	{
+		cout << "copy constructor" << endl;
 		p = new char[copy.size + 1];
 		size = copy.size;
 
@@ -43,20 +44,73 @@ public:
 		p[size] = 0;
 	}
 
+	// Move stílusú értékadó operátor
+	String& operator=(String&& elso)
+	{
+		cout << "move operator = " << endl;
+		if (this != &elso)
+		{
+			p = elso.p;
+			size = elso.size;
+			elso.size = 0;
+			elso.p = nullptr;
+		}
+		return *this;
+
+	}
+
+	// Értékadó operátor 
+	String& operator=(const String& elso)
+	{
+		cout << "operator = " << endl;
+		if (this != &elso)
+		{
+			delete[] p; //felszabadítjuk az eredeti területet
+			size = elso.size;
+			p = new char[size]; //újrafoglaljuk a kellő számú elemnek
+			for (int i = 0; i < size; i++)
+			{
+				p[i] = elso.p[i];
+			}
+
+		}
+		return *this;
+
+	}
+
+	// Move konstruktor
+	String(String&& elso) : size(elso.size), p(elso.p)
+	{
+		cout << "Move constructor" << endl;
+		elso.size = 0;
+		elso.p = nullptr;
+	}
+
 	void kiir()
 	{
-		cout << p << endl;
+		if (p != nullptr)
+		{
+			cout << p << endl;
+		}
+		else
+		{
+			cout << "ures" << endl;
+		}
 	}
 
 };
+
+
 
 int main()
 {
 	String str("Hello world");
 	str.kiir();
-	cout << "======"<<endl ;
-	String str2 = str;
-	str2.kiir();
+	String uj = move(str);
+	cout << "uj kiir:" << endl;
+	uj.kiir();
+	cout << "moveolt str kiir:" << endl;
+	str.kiir();
 
 	return 0;
 }
