@@ -1,0 +1,97 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Operátor túlterhelés
+// // Szabályok
+// A műveletek precendencia sorrendje nem változik meg az átdefiniálástól 
+// Mi az amit nem lehet:  ? : . ?:: amit nem lehet átdefiniálni
+// Pont tagkiválasztó operátor
+// :: Osztályérvényesség operátor
+// Át lehet: new, delete + - / * += -= stb.
+// &, = előre definiált jelentése van
+// Csak tagfüggvényként: =, [], (), ->
+// Csak külső függvény: <<, >>
+
+class Vektor
+{
+private:
+    int x;
+    int y;
+
+public:
+    Vektor(int x, int y)
+    {
+        this->x = x;
+        this->y = y;
+    }
+
+    Vektor operator+(Vektor& masodik)
+    {
+        return Vektor(x + masodik.x, y + masodik.y);
+
+    }
+
+    Vektor operator+=(Vektor& masodik)
+    {
+        x += masodik.x;
+        y += masodik.y;
+
+        return *this;
+    }
+
+    // 2 vektor skaláris szorzata
+
+    int operator*(Vektor& masodik)
+    {
+        return x * masodik.x + y * masodik.y;
+    }
+
+    // 2 vektor szorzása számmal
+    // operator*(Vektor, int)
+    // vektor.operator*(2)
+    // Felcserélhető a szorzás, de itt nem. Vektor * int ok, de int * Vektor már nem. Ahhoz írni kell egy globális függvényt, ami intet ÉS Vektort vár paraméterként
+
+    // Vektor * int változat:
+    Vektor operator*(int num)
+    {
+        x *= num;
+        y *= num;
+
+        return *this;
+    }
+
+    // HF int * Vektor változat (globális)
+
+    /* 
+    Csak olyan műveletet lehet tagfüggvénnyel átdefiniálni, ahol a baloldali operandus a saját objektumom.
+    Kiírásnál a baloldali operandus a kommunikációs objektum (cout). Annak az osztályába nem írhatok tagfüggvényt, hiszen nem a saját osztályom...    
+    Tehát külső függvényként kell megírnom. A friend kapcsolat ezt lehetővé teszi, külső függvényként szimplán nem látna bele a Vektor belsejébe, de mivel az osztály
+    barátjául fogadja, ezért látja a Vektor x és y koordinátáit.
+    */
+
+    friend ostream& operator<<(ostream& ki, const Vektor& kiir)
+    {
+        ki << "(" << kiir.x << ";" << kiir.y << ")";
+
+        return ki;
+    }
+};
+
+int main()
+{
+    Vektor vektor(5, 8);
+    Vektor vektor2(5, 5);
+    
+    Vektor osszeg = vektor + vektor2;
+    cout << osszeg << endl;
+
+    osszeg += vektor2;
+    cout << osszeg << endl;
+    cout << vektor* vektor2 << endl;
+
+    cout << 2 * vektor << endl;
+    
+}
+
