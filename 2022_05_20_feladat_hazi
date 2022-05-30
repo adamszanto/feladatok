@@ -45,6 +45,9 @@ public:
 	}
 
 	// Move stílusú értékadó operátor
+	// &  = referencia
+	// && = rvalue referencia
+	// ...még = xvalue, pr value
 	String& operator=(String&& elso)
 	{
 		cout << "move operator = " << endl;
@@ -115,6 +118,3 @@ int main()
 	return 0;
 }
 
-
-// HF Move konstruktor 
-// Értékadó operátorok írni mindkét változatban - hagyományos és moveos változatban
