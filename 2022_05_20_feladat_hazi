@@ -63,23 +63,23 @@ public:
 	}
 
 	// Értékadó operátor 
-	String& operator=(const String& elso)
+String& operator=(const String& elso)
+{
+	cout << "operator = " << endl;
+	if (this != &elso)
 	{
-		cout << "operator = " << endl;
-		if (this != &elso)
+		delete[] p; //felszabadítjuk az eredeti területet. Létező objektum, a régi területet fel kell szabadítani mielőtt az új szövegnek foglalunk helyet
+		size = elso.size;
+		p = new char[size]; //újrafoglaljuk a kellő számú elemnek
+		for (int i = 0; i < size; i++)
 		{
-			delete[] p; //felszabadítjuk az eredeti területet
-			size = elso.size;
-			p = new char[size]; //újrafoglaljuk a kellő számú elemnek
-			for (int i = 0; i < size; i++)
-			{
-				p[i] = elso.p[i];
-			}
-
+			p[i] = elso.p[i];
 		}
-		return *this;
 
 	}
+	return *this;
+
+}
 
 	// Move konstruktor
 	String(String&& elso) : size(elso.size), p(elso.p)
