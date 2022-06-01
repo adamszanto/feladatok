@@ -1,0 +1,84 @@
+#include <iostream>
+
+using namespace std;
+
+// new: 2 szerepe van, lefoglalja a Heap területben a memóriát. Utána meghívja az osztály megfelelő konstruktorát. Az hogy az osztály melyik konstruktorát hívja meg?
+// Tort osztály még kellene a példához. :-)
+
+int main()
+{
+
+	Tort* t1 = new Tort;       // default ctor, nincs paraméter 
+	Tort* t2 = new Tort();     // default ctor ha írtunk, akkor meghívódik. ha nem, akkor az automatikus default ctor hívódik meg, nem csinál semmit de formailag lesz ilyenünk.
+	Tort* t3 = new Tort(1, 2); // saját ctor (paraméteres konstruktor)
+	Tort* t4 = new Tort(*t3);  // copy ctor (msoló konstruktor, vagy én írok neki konstruktort, vagy a fordító fog. neki is van egy automatikus konstruktora, bitről bitre átmásolja a régi objektumból az újba)
+	Tort* t5 = new Tort[100];  // 100 db default ctor (itt biztos hogy csak a default konstruktort tudjuk csak meghívni, mert nem adhatunk át még a [] mellett ()-ben paramétereket)
+
+	// destruktor: ha tömbként foglaltam, akkor több objektumra kell meghívni, a new []-hoz tartozik a delete[]...
+	delete[] t5; // előbb meghívja az osztály destruktorát. tömb esetében minden esetben meghívja a destruktorát. ebben a példában 100x hívódik meg. majd ezután szabadítja fel a területet. tükör szimmetriában a konstruktorhoz képest. 
+	delete t4;
+	delete t3;
+	delete t2;
+	delete t1;
+
+	/* 1. konverziós operátor átdefiniálása. nincs visszatérési érték előtte
+	class Tort
+	{
+		private: 
+		int szamlalo;
+		int nevezo;
+
+		operator double() const
+		{
+			szamlalo/nevezo;
+		}
+	};
+
+	2. Kikényszerített típuskonverzió 
+
+	cout << (double) t;
+	(0.5)
+
+
+	a++ és ++a (először elvégzi a + hozzáadást, majd a növelő műveletet) közötti különbség
+	prefix vagy postfix, nem mindegy
+	Amikor elől van az inkremens:
+	Pre inkremens
+	Tort & operator++()
+	{
+	szamlalo += nevezo;
+
+	return * this;
+	}
+
+	1. változat tehát preinkremensnél: 
+	Referenciát ad vissza, rögtön megváltoztatom a tört értékét, a megváltoztatott értéket adom vissza, és azzal hajtom végre a további műveletet.
+	Például:
+	Tort t1(1,2);
+	Tort t1 = ++t1 + 1; // t1 értéke 2,5 lesz
+
+	
+
+	2. változat, amikor post inkremens:
+
+	Odaírunk pluszban egy i paramétertt, amit nem fogunk használni, csak a fordítónak jelezzük hogy post változó.
+	Ebben a változatban félre kell rakni a tört régi értékét, és azt kell a fgv-nek visszaadni, de ugyanakkor megnöveljük a tört értékét, 
+	csak ez a visszatérési értékben még nem látszik
+	
+	Tort operator++(int)
+	{
+		Tort temp = *this;
+		szamlalo+= nevezo;
+		return temp;
+	}
+
+	Tort t1(1,2);
+	Tort t2 = t1++ +1;
+	A t2 1,5 lesz. t1 értéke csak utána változik meg. 
+
+
+	*/
+}
+
+
+
