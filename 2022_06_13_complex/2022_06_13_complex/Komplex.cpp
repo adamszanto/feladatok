@@ -1,7 +1,7 @@
-// CPP f·jlban pedig megÌrjuk a fgv-et
+// CPP f√°jlban pedig meg√≠rjuk a fgv-et
 // Komplex::Komplex
-// Oszt·lyneve :: oszt·ly ÈrvÈnyessÈgi oper·tor, majd pedig mag·nak a fgv a neve
-#include "Complex.h"
+// Oszt√°lyneve :: oszt√°ly √©rv√©nyess√©gi oper√°tor, majd pedig mag√°nak a fgv a neve
+#include "Komplex.h"
 
 std::ostream& operator<<(std::ostream& os, Komplex const& k) {
     os << k.re;
@@ -11,7 +11,7 @@ std::ostream& operator<<(std::ostream& os, Komplex const& k) {
     return os;
 }
 
-// Elsı komplex a visszatÈrÈsi ÈrtÈk tÌpusa, m·sodik f¸ggvÈny teljes neve (amihez az oszt·ly is hozz·tartozik)
+// Els√µ komplex a visszat√©r√©si √©rt√©k t√≠pusa, m√°sodik f√ºggv√©ny teljes neve (amihez az oszt√°ly is hozz√°tartozik)
 Komplex Komplex:: operator+(const Komplex& a) {
    
 
@@ -37,12 +37,12 @@ Komplex& Komplex:: operator+=(const Komplex& a)
     re += a.re;
     im += a.im;
 
-    // referenci·t adunk vissza, mag·t az obj v·ltoztatjuk meg
+    // referenci√°t adunk vissza, mag√°t az obj v√°ltoztatjuk meg
     return *this;
 }
 
-// gyˆkvon·s, nem oszt·lytag f¸ggvÈny, hanem glob·lis f¸ggvÈny
-// b·rmely valÛs sz·mbÛl tudjon sqrt vonni, az eredmÈny mindig komplex sz·m legyen
+// gy√∂kvon√°s, nem oszt√°lytag f√ºggv√©ny, hanem glob√°lis f√ºggv√©ny
+// b√°rmely val√≥s sz√°mb√≥l tudjon sqrt vonni, az eredm√©ny mindig komplex sz√°m legyen
 
 Komplex Komplex_sqrt(double ertek)
 {
