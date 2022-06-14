@@ -1,7 +1,7 @@
 // CPP fájlban pedig megírjuk a fgv-et
 // Komplex::Komplex
 // Osztályneve :: osztály érvényességi operátor, majd pedig magának a fgv a neve
-#include "Komplex.h"
+#include "Complex.h"
 
 std::ostream& operator<<(std::ostream& os, Komplex const& k) {
     os << k.re;
