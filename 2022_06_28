@@ -1,0 +1,125 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Eldöntés tétele
+//predikátum... fgv fog kapni, leírja azt a tulajdonságot amilyen elemet keresünk
+template <typename TIPUS, typename P>
+bool anyOf(TIPUS tomb, int meret, P pred)
+{
+    int n = 0;
+
+    while (n < meret && !pred(tomb[n]))
+    {
+        n++;
+    }
+    
+    return n < meret;
+}
+
+
+// All of vizsgálat (mindegyik elemre teljesül-e a vizsgálat)
+
+template <typename TIPUS, typename P>
+bool allOf(TIPUS tomb, int meret, P pred)
+{
+    bool flag = true;
+    int n = 0;
+
+    while (n < meret && flag)
+    {
+        if (pred(tomb[n]))
+        {
+            n++;
+        }
+        else {
+            flag = false;
+        }
+    }
+
+    return flag;
+}
+
+
+// STL-ben is benne vannak, any_of, all_of függvényként beépítve.
+
+
+
+// Predikátum függvény, bool-t ad vissza
+bool paros(int num)
+{
+    return num % 2 == 0;
+}
+
+// 3. feladat
+// Szeretnénk egy olyan függvénysablont, aminek csak a predikátumot tudjuk. Számok összegzésére legyen képes.
+// Készítsük el az osszegez függvénysablont, aminek 3 paramétere van. 
+// t = tömb eleje, t = 6 tömb vége, 0 pedig a kezdőérték
+
+template <typename TIPUS, typename K>
+K osszegez(TIPUS first, TIPUS last, K kezdo)
+{
+ 
+    // Ez esetben előre haladó iterátor. Tároló típustól függ hogy tudunk-e visszafelé haladni. Vektor tud random access iteratorként lépkedni.
+    while (first != last)
+    {
+        kezdo += *first;
+        first++;
+    }
+    return kezdo;
+}
+
+/*
+Készítsen egy újabb változatot a függvénysablonból, ami paraméterként egy predikátumot is átvesz. Ezzel döntse el, hogy az
+adott elemmel el kell-e végeznie a műveletet! Mutassa be az újabb változat használatát a fenti adatokon úgy, hogy az csak a
+páratlan elemekkel végezzen műveletet!
+*/
+template <typename TIPUS, typename K, typename P>
+K osszegez(TIPUS first, TIPUS last, K kezdo, P vizsgalt)
+{
+    while (first != last)
+    {
+        if (vizsgalt(*first))
+        {
+            kezdo += *first; 
+        }
+        first++;
+    }
+    return kezdo;
+}
+
+bool odd(int num)
+{
+    return num % 2 == 1;
+}
+
+
+// H.F.: Összetettebb típusra. Osztályt csinálni, néhány adattaggal. Olyan osztálytípusú objektumokat, az osztályra érvényes dolgokat keressen.
+// Pl. Osztály objektumaiban legyen kor, stb. és keresni az adott korú elemeket.
+// HF: Legyen egy osztály, és az osztály obejktumaival működtesd ezeket a függvényeket.
+
+int main()
+{
+    /*
+    int tomb[] = { 4, 2, 6, 12 };
+    int meret = sizeof(tomb) / sizeof(int);
+
+    //cout << anyOf(tomb, meret, paros);
+    cout << allOf(tomb, meret, paros);
+
+    vector<int> vektor;
+    vektor.push_back(11);
+    vektor.push_back(13);
+    vektor.push_back(15); */
+   
+    // cout << anyOf(vektor, vektor.size(), paros);
+
+
+    //3. feladat main része:
+    int t[] = { 1, 2, 3, 4, 5, 1 };
+    std::vector<double> v(t, t + 6);
+    std::cout << osszegez(t, t + 6, 0) << std::endl; // kezdőérték: 0
+    std::cout << osszegez(v.begin(), v.end(), 2.1) << std::endl; // kezdőérték: 2.1
+
+    std::cout << osszegez(t, t + 6, 0, odd) << std::endl;
+}
