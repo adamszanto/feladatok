@@ -96,10 +96,78 @@ bool odd(int num)
 
 // H.F.: Összetettebb típusra. Osztályt csinálni, néhány adattaggal. Olyan osztálytípusú objektumokat, az osztályra érvényes dolgokat keressen.
 // Pl. Osztály objektumaiban legyen kor, stb. és keresni az adott korú elemeket.
-// HF: Legyen egy osztály, és az osztály obejktumaival működtesd ezeket a függvényeket.
+// HF: Legyen egy osztály, és az osztály objektumaival működtesd ezeket a függvényeket.
+
+class Hallgato
+{
+public:
+
+    Hallgato(string nev, int kor)
+    {
+        this->nev = nev;
+        this->kor = kor;
+    }
+
+    // Getterek
+
+    string getNev()
+    {
+        return nev;
+    }
+
+    int getKor()
+    {
+        return kor;
+    }
+
+    int getKredit()
+    {
+        return kredit;
+    }
+
+    void targyfelvetel()
+    {
+        targyak.push_back("Fizika");
+        targyak.push_back("Matematika");
+        targyak.push_back("Statisztika");
+        targyak.push_back("Mernok informatika");
+    }
+
+    void szabadonValasztott(string targy)
+    {
+        this->targyak.push_back(targy);
+        this->kredit += 3;
+    }
+
+    void targyLista()
+    {
+        cout << getNev() << " felvett targyak: " << endl;
+        for (int i = 0; i < targyak.size(); i++)
+        {
+            cout << targyak[i] << endl;
+        }
+    }
+
+private:
+    string nev;
+    int kor;
+    int kredit = 30;
+    vector<string> targyak;
+    
+};
 
 int main()
 {
+
+    Hallgato hallgato1("Kovacs Zoltan", 19);
+    Hallgato hallgato2("Marton Elemer", 23);
+
+    hallgato1.targyfelvetel();
+    hallgato2.targyfelvetel();
+    hallgato1.szabadonValasztott("EU ismeretek");
+    hallgato1.targyLista();
+    cout << "Kreditek: " << hallgato1.getKredit() << endl;
+
     /*
     int tomb[] = { 4, 2, 6, 12 };
     int meret = sizeof(tomb) / sizeof(int);
@@ -116,10 +184,11 @@ int main()
 
 
     //3. feladat main része:
-    int t[] = { 1, 2, 3, 4, 5, 1 };
+   /* int t[] = {1, 2, 3, 4, 5, 1};
     std::vector<double> v(t, t + 6);
     std::cout << osszegez(t, t + 6, 0) << std::endl; // kezdőérték: 0
     std::cout << osszegez(v.begin(), v.end(), 2.1) << std::endl; // kezdőérték: 2.1
 
     std::cout << osszegez(t, t + 6, 0, odd) << std::endl;
+    */
 }
