@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Index</title>
+</head>
+
+<body>
+	<p id="out"></p>
+	<div>
+		<p id="userholder"></p>
+		<p id="passholder"></p>
+		<p id="mode"></p>
+	</div>
+
+	<div>
+		<input type="text" name="user" id="user" placeholder="Felhasználónév">
+		<input type="password" name="password" id="password" placeholder="Jelszó">
+		<input type="checkbox" name="token" id="token">
+	</div>
+
+	<button onclick="send()">Küldés</button>
+	<button onclick="getData('session')">Session</button>
+	<button onclick="getData('local')">Local</button>
+
+	<script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
