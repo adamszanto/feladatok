@@ -22,6 +22,7 @@ public:
         }
         else {
             cout << "Ervenytelen film bevitel: Ertekeles csak 1.0 - 10.0 ertek kozott lehet" << endl;
+            this->filmErtekeles = 5.0;
         }
         this->filmHossz = filmHossz;
 
@@ -49,10 +50,10 @@ public:
 
     void filmAdatok()
     {
-        cout << "Film cime:         " <<  getFilmCim() << endl;
+        cout << "Film cime:         " << getFilmCim() << endl;
         cout << "Film  eve:         " << getFilmEv() << endl;
-        cout << "Film ertekeles:    " <<  getFilmErtekeles() << endl;
-        cout << "Film hossza (perc):" <<  getFilmHossz() << endl;
+        cout << "Film ertekeles:    " << getFilmErtekeles() << endl;
+        cout << "Film hossza (perc):" << getFilmHossz() << endl;
         cout << "================================" << endl;
     }
 };
@@ -117,6 +118,6 @@ int main()
 
     for (auto x : ujak)
     {
-         cout << x.getFilmEv() << endl;
+        cout << x.getFilmEv() << endl;
     }
 }
